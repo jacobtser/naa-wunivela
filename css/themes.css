@@ -1,0 +1,134 @@
+/* ==========================================
+   THEME-SPECIFIC STYLES
+   ========================================== */
+
+/* Light Theme Enhancements */
+[data-theme="light"] {
+  /* Enhanced text visibility */
+  .text-contrast {
+    color: var(--text-primary) !important;
+    text-shadow: none;
+  }
+  
+  /* Form elements */
+  input,
+  textarea,
+  select {
+    background: white !important;
+    color: var(--text-primary) !important;
+    border-color: #ddd !important;
+  }
+  
+  /* Cards */
+  .product-card,
+  .contact-card {
+    background: white !important;
+    border-color: #eee !important;
+  }
+  
+  /* Navigation */
+  .nav-link {
+    color: var(--text-secondary) !important;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(212, 175, 55, 0.1) !important;
+  }
+}
+
+/* Dark Theme Enhancements */
+[data-theme="dark"] {
+  /* Force text visibility */
+  h1, h2, h3, h4, h5, h6 {
+    color: #F5EFE6 !important;
+    font-weight: 600 !important;
+  }
+  
+  p, span, div {
+    color: #E0D6C9 !important;
+  }
+  
+  .text-muted {
+    color: #B8A99A !important;
+  }
+  
+  /* Enhanced contrast for dark theme */
+  .section-title {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  /* Form elements in dark mode */
+  input,
+  textarea,
+  select {
+    background: var(--bg-tertiary) !important;
+    color: #F5EFE6 !important;
+    border-color: var(--border-color) !important;
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: #B8A99A !important;
+  }
+  
+  /* Cards in dark mode */
+  .product-card,
+  .contact-card {
+    background: var(--bg-tertiary) !important;
+    border-color: var(--border-color) !important;
+  }
+  
+  /* Navigation in dark mode */
+  .nav-link {
+    color: #E0D6C9 !important;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(232, 192, 125, 0.15) !important;
+    color: #E8C07D !important;
+  }
+  
+  /* Footer in dark mode */
+  .footer {
+    background: var(--bg-tertiary) !important;
+  }
+  
+  /* Shadows in dark mode */
+  .product-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  /* YouTube player in dark mode */
+  .video-container iframe,
+  .video-container #player {
+    filter: brightness(0.9) contrast(1.1);
+  }
+}
+
+/* Theme Transition */
+[data-theme] {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme] * {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Print Styles for Themes */
+@media print {
+  [data-theme] {
+    background: white !important;
+    color: black !important;
+  }
+  
+  [data-theme] * {
+    background: white !important;
+    color: black !important;
+    border-color: #ddd !important;
+  }
+}

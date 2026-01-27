@@ -1,0 +1,13 @@
+<svg viewBox="0 0 40 48" x="0" y="0" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><clipPath id="clip0_5_6859" xmlns="http://www.w3.org/2000/svg">
+<path d="M0,10c0,-5.523 4.477,-10 10,-10h30v48h-40z" fill="white"/>
+</clipPath></defs><g id="Tables" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_5_6859)">
+<g id="Header_3">
+<rect width="40" height="48" transform="translate(0, 0)" fill="#F9F9F9"/>
+<g id="square">
+<path id="Vector_7" d="M14,19.333c0,-0.353 0.14,-0.692 0.391,-0.942c0.25,-0.251 0.589,-0.391 0.942,-0.391h9.334c0.353,0 0.692,0.14 0.942,0.391c0.251,0.25 0.391,0.589 0.391,0.942v9.334c0,0.353 -0.14,0.692 -0.391,0.942c-0.25,0.251 -0.589,0.391 -0.942,0.391h-9.334c-0.353,0 -0.692,-0.14 -0.942,-0.391c-0.251,-0.25 -0.391,-0.589 -0.391,-0.942z" stroke="#4F4F4F" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<path id="Divider" d="M0,48h40" stroke="#D9D9D9" stroke-width="0.5"/>
+</g>
+</g></svg>

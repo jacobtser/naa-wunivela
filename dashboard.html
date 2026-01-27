@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medify - Doctor Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/dashboard/icons/logo.svg" alt="Medify Logo" class="logo">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/dashboard.svg" alt="Dashboard" class="nav-icon">
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/appointment.svg" alt="Appointment" class="nav-icon">
+                        <span>Appointment</span>
+                    </a>
+                    <a href="#" class="nav-item active">
+                        <img src="assets/dashboard/icons/doctor.svg" alt="Doctor" class="nav-icon active-icon">
+                        <span>Doctor</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/patient.svg" alt="Patient" class="nav-icon">
+                        <span>Patient</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/department.svg" alt="Department" class="nav-icon">
+                        <span>Departement</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/payment.svg" alt="Payment" class="nav-icon">
+                        <span>Payment</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/bed-manager.svg" alt="Bed Manager" class="nav-icon">
+                        <span>Bed Manager</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section nav-footer">
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/settings.svg" alt="Settings" class="nav-icon">
+                        <span>Settings</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <img src="assets/dashboard/icons/help.svg" alt="Help & Support" class="nav-icon">
+                        <span>Help & Support</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header Profile -->
+            <header class="page-header">
+                <div class="profile-section">
+                    <img src="assets/dashboard/images/profile.jpg" alt="Profile" class="profile-image">
+                    <div class="profile-info">
+                        <div class="profile-name">dr. Jonas Kahnwald, SP.OG</div>
+                        <div class="profile-role">Hospital Director</div>
+                    </div>
+                    <img src="assets/dashboard/icons/dropdown.svg" alt="Menu" class="dropdown-icon">
+                </div>
+            </header>
+
+            <!-- Page Title -->
+            <div class="page-title-section">
+                <div class="title-content">
+                    <h1 class="page-title">Doctor</h1>
+                    <p class="page-subtitle">Manage all doctors in the hospital.</p>
+                </div>
+                <button class="btn-primary" id="newDoctorBtn">
+                    <img src="assets/dashboard/icons/plus.svg" alt="Add" class="btn-icon">
+                    <span>New Doctor</span>
+                </button>
+            </div>
+
+            <!-- Table Card -->
+            <div class="table-card">
+                <!-- Search and Filters -->
+                <div class="table-controls">
+                    <div class="search-box">
+                        <img src="assets/dashboard/icons/search.svg" alt="Search" class="search-icon">
+                        <input type="text" placeholder="Search doctor" id="searchInput">
+                    </div>
+                    
+                    <div class="control-group">
+                        <button class="btn-filter">
+                            <img src="assets/dashboard/icons/filter.svg" alt="Filter" class="filter-icon">
+                            <span>Filter</span>
+                        </button>
+                        
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="list">
+                                <img src="assets/dashboard/icons/list.svg" alt="List" class="view-icon">
+                                <span>Lists</span>
+                            </button>
+                            <button class="view-btn" data-view="grid">
+                                <img src="assets/dashboard/icons/grid.svg" alt="Grid" class="view-icon">
+                                <span>Grid</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container">
+                    <table class="doctors-table">
+                        <thead>
+                            <tr>
+                                <th class="col-checkbox">
+                                    <img src="assets/dashboard/icons/checkbox-unchecked.svg" alt="Select All" class="checkbox">
+                                </th>
+                                <th class="col-name sortable" data-sort="name">
+                                    <div class="th-content">
+                                        <span>Doctor Name</span>
+                                        <img src="assets/dashboard/icons/sort.svg" alt="Sort" class="sort-icon">
+                                    </div>
+                                </th>
+                                <th class="col-department sortable" data-sort="department">
+                                    <div class="th-content">
+                                        <span>Department</span>
+                                        <img src="assets/dashboard/icons/sort.svg" alt="Sort" class="sort-icon">
+                                    </div>
+                                </th>
+                                <th class="col-phone sortable" data-sort="phone">
+                                    <div class="th-content">
+                                        <span>Phone Number</span>
+                                        <img src="assets/dashboard/icons/sort.svg" alt="Sort" class="sort-icon">
+                                    </div>
+                                </th>
+                                <th class="col-email">
+                                    <span>Email</span>
+                                </th>
+                                <th class="col-status sortable" data-sort="status">
+                                    <div class="th-content">
+                                        <span>Status</span>
+                                        <img src="assets/dashboard/icons/sort.svg" alt="Sort" class="sort-icon">
+                                    </div>
+                                </th>
+                                <th class="col-action">
+                                    <span>Action</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="doctorsTableBody">
+                            <!-- Rows will be dynamically generated -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="table-footer">
+                    <div class="entries-info">
+                        Showing <span id="startEntry">1</span> to <span id="endEntry">10</span> of <span id="totalEntries">256</span> entries
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prevPage">
+                            <img src="assets/dashboard/icons/arrow-left.svg" alt="Previous">
+                        </button>
+                        <div class="page-numbers" id="pageNumbers">
+                            <!-- Page numbers will be generated dynamically -->
+                        </div>
+                        <button class="pagination-btn" id="nextPage">
+                            <img src="assets/dashboard/icons/arrow-right.svg" alt="Next">
+                        </button>
+                    </div>
+                    
+                    <div class="entries-selector">
+                        <span>Show</span>
+                        <div class="select-wrapper">
+                            <select id="entriesPerPage">
+                                <option value="10">10</option>
+                                <option value="15" selected>15</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                            <img src="assets/dashboard/icons/chevron-down.svg" alt="Dropdown" class="select-icon">
+                        </div>
+                        <span>entries</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard/dashboard.js"></script>
+</body>
+</html>

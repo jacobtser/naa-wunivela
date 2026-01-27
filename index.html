@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Naa-Wuni Vela - Premium natural shea butter products from sustainable Ghanaian sources"
+    />
+    <meta
+      name="keywords"
+      content="shea butter, natural, organic, skincare, Ghana, sustainable, beauty"
+    />
+    <meta name="author" content="Naa-Wuni Vela Team" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Naa-Wuni Vela | Premium Natural Shea Butter</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/themes.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.jpeg" />
+  </head>
+
+  <body data-theme="light">
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <div class="nav-container">
+          <!-- Logo with enhanced visibility -->
+          <div class="logo-container">
+            <div class="logo-wrapper">
+              <img
+                src="assets/images/logo.jpeg"
+                alt="Naa-Wuni Vela Logo"
+                class="main-logo"
+              />
+            </div>
+            <h1 class="company-name">Naa-Wuni Vela</h1>
+          </div>
+
+          <!-- Main Navigation -->
+          <div class="nav-menu" id="navMenu">
+            <a href="#home" class="nav-link active" data-section="home">
+              <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#products" class="nav-link" data-section="products">
+              <i class="fas fa-shopping-bag"></i> Products
+            </a>
+            <a href="#about" class="nav-link" data-section="about">
+              <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="#contact" class="nav-link" data-section="contact">
+              <i class="fas fa-envelope"></i> Contact
+            </a>
+          </div>
+
+          <!-- Theme Toggle -->
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+
+          <!-- Mobile Menu Toggle -->
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-background-slider">
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/Seed.jpeg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/Women.jpeg&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/1.png&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/2.png&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/3.png&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/4.png&quot;)"
+        ></div>
+        <div
+          class="hero-slide"
+          style="background-image: url(&quot;assets/images/5.jpeg&quot;)"
+        ></div>
+      </div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text animate-fade-in">
+            <h1 class="hero-title">
+              God Is Good <span class="highlight">& So Is Our Shea</span>
+            </h1>
+            <p class="hero-subtitle">
+              Pure Soul blends love, purity, and nature's finest gifts.
+              Experience premium shea butter crafted with tradition and care.
+            </p>
+            <div class="hero-buttons">
+              <button
+                class="cta-button primary"
+                onclick="scrollToSection('products')"
+              >
+                <i class="fas fa-shopping-bag"></i> Shop Now
+              </button>
+              <button
+                class="cta-button secondary"
+                onclick="scrollToSection('about')"
+              >
+                <i class="fas fa-play-circle"></i> Watch Our Story
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-stats animate-slide-up">
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Happy Families</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Natural</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Communities</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section products-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Our Collection</span>
+          <h2 class="section-title">Premium Shea Products</h2>
+          <p class="section-subtitle">
+            Deliberately crafted with love, pure and natural
+          </p>
+          <div class="title-decoration">
+            <span></span>
+            <i class="fas fa-leaf"></i>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Products loaded dynamically -->
+        </div>
+
+        <div class="section-footer">
+          <button class="view-all-btn" onclick="scrollToSection('contact')">
+            View All Products <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section with Tabs -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Our Essence</span>
+          <h2 class="section-title">About Naa-Wuni Vela</h2>
+          <p class="section-subtitle">Discover our journey, team, and impact</p>
+          <div class="title-decoration">
+            <span></span>
+            <i class="fas fa-leaf"></i>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="about-tabs">
+          <div class="tab-buttons">
+            <button class="tab-button active" data-tab="story">
+              <i class="fas fa-history"></i> Our Story
+            </button>
+            <button class="tab-button" data-tab="team">
+              <i class="fas fa-users"></i> Our Team
+            </button>
+            <button class="tab-button" data-tab="impact">
+              <i class="fas fa-seedling"></i> Our Impact
+            </button>
+            <button class="tab-button" data-tab="testimonials">
+              <i class="fas fa-star"></i> Testimonials
+            </button>
+          </div>
+
+          <!-- Tab Content -->
+          <div class="tab-content-wrapper">
+            <!-- Our Story Tab -->
+            <div id="story-tab" class="tab-content active">
+              <div class="story-content">
+                <div class="story-text animate-slide-left">
+                  <h3>From Ghana With Love</h3>
+                  <p>
+                    Naa-Wuni Vela was born in the heart of Ghana's shea belt,
+                    where ancient traditions meet modern quality standards. Our
+                    name means "God is good" in the local dialect, reflecting our
+                    commitment to sharing nature's finest with the world.
+                  </p>
+
+                  <div class="story-timeline">
+                    <div class="timeline-item">
+                      <div class="timeline-year">2020</div>
+                      <div class="timeline-content">
+                        <h4>The Beginning</h4>
+                        <p>
+                          Founded by Stephen Dobia with a vision to empower
+                          local women and share Ghana's premium shea butter with
+                          the world.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-year">2021</div>
+                      <div class="timeline-content">
+                        <h4>First Prototype</h4>
+                        <p>
+                          The shear was birthed. This is where the theoretical
+                          knowdledge was brought to life in a physical product.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="timeline-item">
+                      <div class="timeline-year">2023</div>
+                      <div class="timeline-content">
+                        <h4>Sustainability Certification</h4>
+                        <p>
+                          Achieved organic and sustainable sourcing
+                          certifications, ensuring environmental responsibility.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="story-media animate-slide-right">
+                  <div class="story-video">
+                    <div class="video-container" id="storyVideo">
+                      <!-- YouTube video will be loaded here -->
+                    </div>
+                    <p class="video-caption">
+                      Watch our journey from farm to finished product
+                    </p>
+                  </div>
+
+                  <div class="story-images">
+                    <img
+                      src="assets/images/Women.jpeg"
+                      alt="Our Women Collectives"
+                      class="story-img"
+                    />
+                    <img
+                      src="assets/images/Seed.jpeg"
+                      alt="Shea Nuts"
+                      class="story-img"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Our Team Tab -->
+            <div id="team-tab" class="tab-content">
+              <div class="team-intro">
+                <h3>Meet Our Family</h3>
+                <p>The dedicated team behind Naa-Wuni Vela's success</p>
+              </div>
+
+              <div class="team-grid" id="teamGrid">
+                <!-- Team members loaded dynamically -->
+              </div>
+            </div>
+
+            <!-- Our Impact Tab -->
+            <div id="impact-tab" class="tab-content">
+              <div class="impact-intro">
+                <h3>Making a Difference</h3>
+                <p>Our commitment to people and planet</p>
+              </div>
+
+              <div class="impact-stats">
+                <div class="stat-card animate-fade-in">
+                  <div class="stat-icon">👥</div>
+                  <div class="stat-number" data-count="50">0</div>
+                  <div class="stat-label">Women Empowered.</div>
+                </div>
+
+                <div
+                  class="stat-card animate-fade-in"
+                  style="animation-delay: 0.1s"
+                >
+                  <div class="stat-icon">🌳</div>
+                  <div class="stat-number" data-count="1000">0</div>
+                  <div class="stat-label">Trees Planted</div>
+                </div>
+
+                <div
+                  class="stat-card animate-fade-in"
+                  style="animation-delay: 0.2s"
+                >
+                  <div class="stat-icon">💰</div>
+                  <div class="stat-number" data-count="25">0</div>
+                  <div class="stat-label">Jobs to be created</div>
+                </div>
+
+                <div
+                  class="stat-card animate-fade-in"
+                  style="animation-delay: 0.3s"
+                >
+                  <div class="stat-icon">🎓</div>
+                  <div class="stat-number" data-count="50">0</div>
+                  <div class="stat-label">Youth Trained</div>
+                </div>
+              </div>
+
+              <div class="impact-details">
+                <div class="impact-card">
+                  <div class="impact-image">
+                    <img
+                      src="assets/images/Women.jpeg"
+                      alt="Women Empowerment"
+                    />
+                  </div>
+                  <div class="impact-content">
+                    <h4>Women Empowerment</h4>
+                    <p>
+                      We work directly with women's cooperatives, providing fair
+                      wages, training, and support for sustainable livelihoods.
+                    </p>
+                    <ul class="impact-list">
+                      <li>
+                        <i class="fas fa-check-circle"></i> Fair trade certified
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Skills development
+                        programs
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i>Business mentorship
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Environmental
+                        Sustainability Certified
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="impact-card reverse">
+                  <div class="impact-image">
+                    <img
+                      src="assets/images/Seed.jpeg"
+                      alt="Environmental Sustainability"
+                    />
+                  </div>
+                  <div class="impact-content">
+                    <h4>Environmental Sustainability</h4>
+                    <p>
+                      Our commitment to protecting the planet through
+                      sustainable practices and conservation efforts.
+                    </p>
+                    <ul class="impact-list">
+                      <li>
+                        <i class="fas fa-check-circle"></i> Organic farming
+                        methods
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Reforestation
+                        projects
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Eco-friendly
+                        packaging
+                      </li>
+                      <li>
+                        <i class="fas fa-check-circle"></i> Water conservation
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonials Tab -->
+            <div id="testimonials-tab" class="tab-content">
+              <div class="testimonials-slider">
+                <div class="testimonials-container" id="testimonialsSlider">
+                  <!-- Testimonials loaded dynamically -->
+                </div>
+
+                <div class="testimonial-controls">
+                  <button class="testimonial-prev" onclick="prevTestimonial()">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
+
+                  <div class="testimonial-dots" id="testimonialDots">
+                    <!-- Dots loaded dynamically -->
+                  </div>
+
+                  <button class="testimonial-next" onclick="nextTestimonial()">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="testimonial-form">
+                <h4>Share Your Experience</h4>
+                <p>
+                  We'd love to hear from you! Share how Naa-Wuni Vela has
+                  impacted you.
+                </p>
+                <button
+                  class="share-testimonial-btn"
+                  onclick="scrollToSection('contact')"
+                >
+                  <i class="fas fa-comment"></i> Share Your Story
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title">Contact Us</h2>
+          <p class="section-subtitle">We'd love to hear from you</p>
+        </div>
+
+        <div class="contact-content">
+          <div class="contact-info animate-fade-in">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h3>Our Location</h3>
+              <p>
+                Boaterigu, Bunkpurugu-Nakpanduri District<br />Northeast Region,
+                Ghana
+              </p>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h3>Phone Number</h3>
+              <p>+233 (055) 655 9201</p>
+              <p>Available: Mon-Fri, 8AM-5PM GMT</p>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email Address</h3>
+              <p>dobiastephen86@gmail.com</p>
+              <p>Response within 24 hours</p>
+            </div>
+
+            <div class="social-links">
+              <h4>Follow Us</h4>
+              <div class="social-icons">
+                <a href="#" class="social-icon facebook">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon twitter">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                  <i class="fab fa-whatsapp"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form animate-slide-up">
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/mnjjgnpz"
+              method="POST"
+            >
+              <div class="form-header">
+                <h3>Send us a message</h3>
+                <p>Fill out the form below and we'll respond promptly</p>
+              </div>
+
+              <div class="form-group">
+                <label for="name">
+                  <i class="fas fa-user"></i> Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter your full name"
+                  required
+                />
+                <div class="form-error" id="nameError"></div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">
+                    <i class="fas fa-envelope"></i> Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                  <div class="form-error" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">
+                    <i class="fas fa-phone"></i> Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+233 XX XXX XXXX"
+                  />
+                  <div class="form-error" id="phoneError"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">
+                  <i class="fas fa-comment"></i> Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about your needs or ask any questions..."
+                  rows="5"
+                  required
+                ></textarea>
+                <div class="char-counter">
+                  <span id="charCount">0</span>/500 characters
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" class="submit-button">
+                  <i class="fas fa-paper-plane"></i> Send Message
+                  <div class="button-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                  </div>
+                </button>
+                <p class="form-note">
+                  <i class="fas fa-lock"></i> Your information is secure and
+                  private
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- Logo ABOVE company name as requested -->
+          <div class="footer-brand">
+            <div class="footer-logo-container">
+              <img
+                src="assets/images/logo.jpeg"
+                alt="Naa-Wuni Vela Logo"
+                class="footer-logo"
+              />
+            </div>
+            <div class="company-info">
+              <h2 class="footer-company-name">Naa-Wuni Vela</h2>
+              <p class="company-tagline">Premium Natural Shea Butter</p>
+            </div>
+          </div>
+
+          <div class="footer-grid">
+            <div class="footer-column">
+              <h3>Quick Links</h3>
+              <ul class="footer-links">
+                <li>
+                  <a href="#home"><i class="fas fa-chevron-right"></i> Home</a>
+                </li>
+                <li>
+                  <a href="#products"
+                    ><i class="fas fa-chevron-right"></i> Products</a
+                  >
+                </li>
+                <li>
+                  <a href="#about"
+                    ><i class="fas fa-chevron-right"></i> About Us</a
+                  >
+                </li>
+                <li>
+                  <a href="#contact"
+                    ><i class="fas fa-chevron-right"></i> Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h3>Our Products</h3>
+              <ul class="footer-links">
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Shea Butter</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-chevron-right"></i> Shea Soap</a>
+                </li>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-column">
+              <h3>Contact Info</h3>
+              <div class="contact-info-footer">
+                <p><i class="fas fa-map-marker-alt"></i> Boaterigu, Ghana</p>
+                <p><i class="fas fa-phone"></i> +233 (055) 655 9201</p>
+                <p><i class="fas fa-envelope"></i> dobiastephen86@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>&copy; 2026 Naa-Wuni Vela. All rights reserved.</p>
+          </div>
+          <div class="developer-credit">
+            <p>
+              <i class="fas fa-code"></i> Crafted with
+              <i class="fas fa-heart" style="color: #e74c3c"></i> by
+              <span class="dev-team">The Developers Team</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Files -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/video-handler.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/responsive.js"></script>
+  </body>
+</html>

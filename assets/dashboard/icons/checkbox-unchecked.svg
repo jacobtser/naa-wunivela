@@ -1,0 +1,9 @@
+<svg viewBox="0 0 40 48" x="0" y="0" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Tables_8" xmlns="http://www.w3.org/2000/svg">
+<g id="Cell">
+<rect width="40" height="48" transform="translate(0, 0)" fill="white"/>
+<g id="square_2">
+<path id="Vector_12" d="M14,19.333c0,-0.353 0.14,-0.692 0.391,-0.942c0.25,-0.251 0.589,-0.391 0.942,-0.391h9.334c0.353,0 0.692,0.14 0.942,0.391c0.251,0.25 0.391,0.589 0.391,0.942v9.334c0,0.353 -0.14,0.692 -0.391,0.942c-0.25,0.251 -0.589,0.391 -0.942,0.391h-9.334c-0.353,0 -0.692,-0.14 -0.942,-0.391c-0.251,-0.25 -0.391,-0.589 -0.391,-0.942z" stroke="#4F4F4F" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<path id="Divider_8" d="M0,48h40" stroke="#D9D9D9" stroke-width="0.5"/>
+</g></svg>

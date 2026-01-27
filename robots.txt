@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /js/
+Disallow: /css/
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /assets/
+
+Allow: /assets/images/
+Allow: /assets/videos/
+
+Sitemap: https://shearbutter.com/sitemap.xml

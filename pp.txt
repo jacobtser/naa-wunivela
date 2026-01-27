@@ -1,0 +1,14 @@
+As a senior developer with a specialization in web development, create a fully functioning website by following strictly this requirements and beyond;
+1. This is a shear butter startup website. It must have the  sections of experts (team members), mission, vision statements, embedded videos to tell the stories of the startup, what people say about us and all necessary info that a classic startup or business should and must have.
+2. Develop the site with HTML, CSS, JavaScript and all easy-to-go-with languages that does not create bulky files ( like NODE.JS and co) to create the frontend.
+3. For the backend, use languages that are easy to test in cmd terminal and easy to deploy on free web holsters like GitHub .
+4. Every bit of the website must be so aesthetically appealing and catchy .
+5. The fonts must be so sweet, catchy, amazing, mesmerizing and aesthetically mesmerizing .
+6. Write all the codes one by one and fully with all the advanced knowledge in programming, show me explicitly all folders that must be created to start putting the codes in them
+7. Put in all the security measure for web development so that the sources code cannot be seen, the website cannot be easily manipulated and compromised
+8. Put in the sweet and necessary animations but make sure they do not distract anything but are always on point and are exactly where they are supposed to be and running smoothly.
+9 . Make the site super sensitive so that when used on any device, it still look so nice and beautiful.
+10. The website must have email section where a user can straight away send email on the site to the owner without going into their emails ( you can use formspree to do that or something better that is free to use)
+11. THIS IS VERY IMPORTANT: Instead of packing everything on the website on one page, create a tap ( i am thinking the top would be better) for some sections that are not really the main website concern ( it doesn't matter where the screen is big or not). We want a professional and emphatical work which is why everything must be plain and super great and of high clarity.
+12. Create an admin page, where we can upload documents, videos and all necessary info like sending message to members of the team and all that and have sections where we can describe what we have sent on the admin page.
+13. The developer is part of the team so when it comes to the developer's info, it must be a TRANSPARENT TEXT at the bottom stating that the website is created by the IT department

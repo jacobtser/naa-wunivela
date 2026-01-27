@@ -1,0 +1,275 @@
+/* ==========================================
+   ENHANCED RESPONSIVE DESIGN
+   ========================================== */
+
+/* Extra Large Screens (1440px and above) */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .hero-title {
+    font-size: 5rem;
+  }
+  
+  .section {
+    padding: 6rem 0;
+  }
+}
+
+/* Large Screens (1024px to 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 2rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablets (768px to 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .nav-menu {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile Landscape (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .hero-title {
+    font-size: 2.75rem;
+  }
+  
+  .section-title {
+    font-size: 2.25rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .about-content,
+  .contact-content {
+    gap: 2rem;
+  }
+}
+
+/* Mobile Portrait (320px to 575px) */
+@media (max-width: 575px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .hero {
+    min-height: 80vh;
+    padding-top: 70px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .product-card {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+  
+  .logo-wrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .company-name {
+    font-size: 1.5rem;
+  }
+  
+  .footer-logo-container {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .footer-company-name {
+    font-size: 2rem;
+  }
+}
+
+/* Very Small Phones (max-width: 320px) */
+@media (max-width: 320px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  
+  .cta-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .logo-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Height-based adjustments for mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    min-height: 120vh;
+  }
+  
+  .hero-content {
+    padding: 4rem 0;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navbar,
+  .theme-toggle,
+  .hamburger,
+  .back-to-top,
+  .hero-background-slider,
+  .hero-overlay {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .container {
+    max-width: 100% !important;
+  }
+  
+  .section {
+    padding: 2rem 0 !important;
+    page-break-inside: avoid;
+  }
+  
+  a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .product-card:hover {
+    transform: none;
+  }
+  
+  .nav-link:hover {
+    transform: none;
+  }
+  
+  .cta-button:hover {
+    transform: none;
+  }
+  
+  /* Increase tap targets for mobile */
+  .nav-link {
+    padding: 1rem;
+  }
+  
+  .cta-button {
+    padding: 1.25rem 2.5rem;
+  }
+  
+  input,
+  textarea,
+  button {
+    font-size: 16px; /* Prevents zoom on focus in iOS */
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-slide {
+    transition: none;
+  }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  
+  body:not([data-theme]) {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #FFD700;
+    --text-primary: #000000;
+    --bg-primary: #FFFFFF;
+  }
+  
+  [data-theme="dark"] {
+    --primary-color: #FFD700;
+    --text-primary: #FFFFFF;
+    --bg-primary: #000000;
+  }
+}

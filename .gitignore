@@ -1,0 +1,122 @@
+# ==========================================
+# SHEAR BUTTER - GIT IGNORE
+# ==========================================
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Admin sensitive files
+admin/*.log
+admin/config.php
+admin/private/
+
+# Backend files
+backend/config.php
+backend/database/
+backend/logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies (if using any)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build files
+dist/
+build/
+out/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cache files
+.cache/
+cache/
+
+# Uploads (store locally, don't commit)
+uploads/
+assets/uploads/
+
+# Local test files
+test-*.html
+test-*.js
+
+# Security
+*.pem
+*.key
+*.cert
+private_key
+public_key
+
+# Database files
+*.sqlite
+*.db
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Documentation files that shouldn't be committed
+docs/private/
+docs/internal/
+
+# Secret files
+secrets.json
+credentials.json
+.aws/
+.secrets/
+
+# Node alternatives
+Gemfile.lock
+composer.lock
+requirements.txt
+poetry.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+
+# Keep track of important files
+!.gitkeep
+!.gitignore
+!README.md
+!LICENSE
+
+.automate
