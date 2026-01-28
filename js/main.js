@@ -20,7 +20,7 @@ const TEAM_DATA = [
   {
     name: "Stephen Andrews Dobia",
     role: "Founder & CEO",
-    bio: "Visionary leader with 5+ years in sustainable agriculture and premium shea products. Passionate about empowering local communities.",
+    bio: "Visionary leader with 3+ years in sustainable agriculture and premium shea products. Passionate about empowering local communities.",
     image: "assets/images/team/Stephen.png",
     social: {
       facebook: "https://www.fb.com/l/6lp1kJRRR",
@@ -32,7 +32,7 @@ const TEAM_DATA = [
     name: "Ayeh Kwabena-Koranteng William",
     role: "Sales & Marketing Director",
     bio: "Expert in market analytics and international sales. Leads our global expansion efforts.",
-    image: "assets/images/team/William.jpg",
+    image: "assets/images/team/William.png",
   },
   {
     name: "Mr. Francis Nibanje Siibu",
@@ -133,6 +133,11 @@ function preloadHeroImages() {
     'assets/images/2.png',
     'assets/images/3.png',
     'assets/images/4.png',
+    'assets/images/11.png',
+    'assets/images/22.png',
+    'assets/images/33.png',
+    'assets/images/44.png',
+    'assets/images/55.png',
     'assets/images/5.jpeg'
   ];
   
@@ -214,8 +219,8 @@ function initializeHeroSliderEnhanced() {
 
   // Start slideshow after 5 seconds
   setTimeout(() => {
-    heroSlideInterval = setInterval(showNextSlide, 5);
-  }, 5);
+    heroSlideInterval = setInterval(showNextSlide, 3000);
+  }, 3000);
 
   // Pause on hover
   const hero = document.querySelector(".hero");
@@ -225,7 +230,7 @@ function initializeHeroSliderEnhanced() {
     });
     hero.addEventListener("mouseleave", () => {
       clearInterval(heroSlideInterval);
-      heroSlideInterval = setInterval(showNextSlide, 2000);
+      heroSlideInterval = setInterval(showNextSlide, 3000);
     });
   }
 }
@@ -372,7 +377,7 @@ function initializeProducts() {
       description: "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
       price: "GHc250.00",
       image: "assets/images/shearr.jpg",
-features: ["Unrefined", "Grade A", "Cold Pr      essed", "No Additives"],
+      features: ["Unrefined", "Grade A", "No Additives"],
       badge: "Best Seller",
     },
     {
@@ -380,15 +385,15 @@ features: ["Unrefined", "Grade A", "Cold Pr      essed", "No Additives"],
       description: "Content",
       price: "Shea content",
       image: "assets/images/shea.jpg",
-      features: ["Unrefined", "Grade A", "Cold Pressed", "No Additives"],
+      features: ["Unrefined", "Grade A", "No Additives"],
       badge: "Content",
     },
     {
-      name: "Shea Soap",
+      name: "Shea / Neem Soap",
       description: "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
       price: "GHc15.00",
       image: "assets/images/soap.png",
-      features: ["Organic Herbs", "Handmade", "Natural Fragrance", "Eco-friendly"],
+      features: ["Organic Herbs", "Natural Fragrance", "Eco-friendly"],
       badge: "New",
     },
   ];
