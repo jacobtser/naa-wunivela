@@ -260,3 +260,521 @@
     animation: none;
   }
 }
+
+/* ==========================================
+   ADDITIONAL ENHANCED ANIMATIONS
+   ========================================== */
+
+/* Width pulse animation */
+@keyframes widthPulse {
+    0% {
+        width: 60px;
+    }
+    50% {
+        width: 80px;
+    }
+    100% {
+        width: 100px;
+    }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Card lift animation */
+@keyframes cardLift {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Gradient shift animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Float animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Image hover animation */
+@keyframes imageHover {
+    0% {
+        transform: scale(1) rotate(0);
+    }
+    100% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Preload animation for hero */
+@keyframes preloadImage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Active state for hero slides */
+@keyframes heroSlideIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Enhanced hover lift effect */
+.hover-lift-enhanced {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-lift-enhanced:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Social icon hover animation */
+.social-link-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-link-hover:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Border animation */
+@keyframes borderGlow {
+    0%, 100% {
+        border-color: rgba(212, 175, 55, 0.3);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+    }
+    50% {
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+}
+
+.border-glow {
+    animation: borderGlow 3s infinite;
+}
+
+/* Text highlight animation */
+@keyframes textHighlight {
+    0%, 100% {
+        color: var(--text-primary);
+    }
+    50% {
+        color: var(--primary-color);
+    }
+}
+
+.text-highlight {
+    animation: textHighlight 3s infinite;
+}
+
+/* Loading bar animation */
+@keyframes loadingBar {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+/* Scale in with bounce */
+@keyframes scaleInBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in-bounce {
+    animation: scaleInBounce 0.6s ease-out forwards;
+}
+
+/* Slide in with fade */
+@keyframes slideInFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.slide-in-fade {
+    animation: slideInFade 0.5s ease-out forwards;
+}
+
+/* Continuous rotation */
+@keyframes continuousRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.continuous-rotate {
+    animation: continuousRotate 20s linear infinite;
+}
+
+
+/* ==========================================
+   ENHANCED ANIMATIONS FOR TEAM & SUPPORTERS
+   ========================================== */
+
+/* Width pulse animation */
+@keyframes widthPulse {
+    0% {
+        width: 60px;
+    }
+    50% {
+        width: 80px;
+    }
+    100% {
+        width: 100px;
+    }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Card lift animation */
+@keyframes cardLift {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    100% {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Float animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Image hover animation */
+@keyframes imageHover {
+    0% {
+        transform: scale(1) rotate(0);
+    }
+    100% {
+        transform: scale(1.1) rotate(5deg);
+    }
+}
+
+/* Preload animation for hero */
+@keyframes preloadImage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Active state for hero slides */
+@keyframes heroSlideIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Border animation */
+@keyframes borderGlow {
+    0%, 100% {
+        border-color: rgba(212, 175, 55, 0.3);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+    }
+    50% {
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+}
+
+.border-glow {
+    animation: borderGlow 3s infinite;
+}
+
+/* Text highlight animation */
+@keyframes textHighlight {
+    0%, 100% {
+        color: var(--text-primary);
+    }
+    50% {
+        color: var(--primary-color);
+    }
+}
+
+.text-highlight {
+    animation: textHighlight 3s infinite;
+}
+
+/* Scale in with bounce */
+@keyframes scaleInBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in-bounce {
+    animation: scaleInBounce 0.6s ease-out forwards;
+}
+
+/* Slide in with fade */
+@keyframes slideInFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.slide-in-fade {
+    animation: slideInFade 0.5s ease-out forwards;
+}
+
+/* Continuous rotation */
+@keyframes continuousRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.continuous-rotate {
+    animation: continuousRotate 20s linear infinite;
+}
+
+/* Special animation for Mr. Obed Nyarko's card */
+@keyframes featuredPulse {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 35px rgba(212, 175, 55, 0.5);
+    }
+}
+
+.featured-supporter {
+    animation: featuredPulse 2s infinite;
+}
+
+/* Gradient animation for supporter roles */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gradient-animate {
+    background: linear-gradient(270deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Loading bar animation for hero preload */
+@keyframes loadingBar {
+    0% {
+        width: 0%;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+.hero-loading-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    animation: loadingBar 2s ease-in-out infinite;
+    z-index: 3;
+}
+
+/* Enhanced hover lift effect */
+.hover-lift-enhanced {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-lift-enhanced:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Social icon hover animation */
+.social-link-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-link-hover:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Staggered animation for team grid */
+.stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero title entrance animation */
+@keyframes heroTitleEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.hero-text.animate-fade-in {
+    animation: heroTitleEntrance 0.8s ease-out forwards;
+}
+
+/* Section title underline animation */
+@keyframes underlineExpand {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100px;
+    }
+}
+
+.section-title::after {
+    animation: underlineExpand 1s ease-out forwards;
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.button-press:active {
+    animation: buttonPress 0.2s ease;
+}

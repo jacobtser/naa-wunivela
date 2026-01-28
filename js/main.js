@@ -1,5 +1,5 @@
 // ==========================================
-// NAA-WUNI VELA - COMPLETE JAVASCRIPT
+// NAA-WUNI VELA - COMPLETE JAVASCRIPT WITH ALL FIXES
 // ==========================================
 
 "use strict";
@@ -24,18 +24,27 @@ const TEAM_DATA = [
     image: "assets/images/team/Stephen.png",
     social: {
       facebook: "https://www.fb.com/l/6lp1kJRRR",
-      twitter: "",
-      instagram:
-        "https://www.instagram.com/invites/contact/?igsh=4jksbir9p26p&utm_content=u5imiah",
-      linkedin:
-        "https://www.linkedin.com/in/stephen-andrews-dobia-298733322/?originalSubdomain=gh",
+      instagram: "https://www.instagram.com/invites/contact/?igsh=4jksbir9p26p&utm_content=u5imiah",
+      linkedin: "https://www.linkedin.com/in/stephen-andrews-dobia-298733322/?originalSubdomain=gh",
     },
   },
   {
     name: "Ayeh Kwabena-Koranteng William",
     role: "Sales & Marketing Director",
     bio: "Expert in market analytics and international sales. Leads our global expansion efforts.",
-    image: "assets/images/team/Wiliam.jpg",
+    image: "assets/images/team/William.jpg",
+  },
+  {
+    name: "Mr. Francis Nibanje Siibu",
+    role: "Advisor & Mentor - Sustainability",
+    bio: "Provides strategic guidance on sustainable development practices and community benefits.",
+    image: "assets/images/team/Mr. Francis.jpg",
+  },
+  {
+    name: "Mr. John Wobil",
+    role: "Business Coach",
+    bio: "Provides essential mentorship in business development and strategic planning.",
+    image: "assets/images/team/Mr. John.jpg",
   },
   {
     name: "Jacob Tser Doku",
@@ -45,8 +54,7 @@ const TEAM_DATA = [
     social: {
       facebook: "https://www.facebook.com/jacob.tser/",
       twitter: "https://x.com/JacobTser418",
-      linkedin:
-        "https://www.linkedin.com/in/jacob-tser-doku-1360a8202/overlay/contact-info/",
+      linkedin: "https://www.linkedin.com/in/jacob-tser-doku-1360a8202/overlay/contact-info/",
       github: "https://github.com/jacobtser",
       ID: "https://angelbluef65-tech.github.io/my_portfolio/",
     },
@@ -63,25 +71,25 @@ const TEAM_DATA = [
 const TESTIMONIALS_DATA = [
   {
     text: "Naa-Wuni Vela's shea butter has transformed my skincare routine. The quality is exceptional and my skin has never felt better!",
-    author: "Akosua Mensah",
+    author: "Grace",
     location: "Accra, Ghana",
     rating: "★★★★★",
   },
   {
     text: "As a professional esthetician, I only recommend the best products to my clients. Naa-Wuni Vela is now my go-to shea butter brand.",
-    author: "Nkosu Boateng",
+    author: "Christabel",
     location: "Kumasi, Ghana",
     rating: "★★★★★",
   },
   {
     text: "Not only is the product amazing, but knowing it supports women in Ghana makes it even more special. Truly ethical beauty.",
-    author: "Nma Seila",
+    author: "Dora",
     location: "Kumasi, Ghana",
     rating: "★★★★★",
   },
   {
     text: "The best shea butter I've ever used! My family loves it for everything from skin care to minor burns and cuts.",
-    author: "Kofi Agyeman",
+    author: "Madam Grace",
     location: "Kumasi, Ghana",
     rating: "★★★★★",
   },
@@ -112,16 +120,156 @@ const elements = {
   contactForm: document.getElementById("contactForm"),
 };
 
+// ==========================================
+// PRELOAD & HERO BACKGROUND FIXES
+// ==========================================
+
+// Preload hero images for immediate display
+function preloadHeroImages() {
+  console.log("Preloading hero images...");
+  
+  const heroImages = [
+    'assets/images/1.png',
+    'assets/images/2.png',
+    'assets/images/3.png',
+    'assets/images/4.png',
+    'assets/images/5.jpeg'
+  ];
+  
+  // Preload all images
+  heroImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+  
+  // Set first slide as active immediately
+  setTimeout(() => {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length > 0) {
+      slides[0].classList.add('active');
+      slides[0].style.opacity = '1';
+    }
+  }, 100);
+}
+
+// Enhanced team card initialization with compact layout
+function initializeTeamEnhanced() {
+  const teamGrid = document.getElementById("teamGrid");
+  if (!teamGrid) return;
+
+  teamGrid.innerHTML = TEAM_DATA.map(
+    (member, index) => `
+    <div class="team-member-card animate-fade-in" style="animation-delay: ${index * 0.15}s">
+      <div class="team-member-image">
+        <img src="${member.image}" alt="${member.name}" loading="lazy" onerror="this.onerror=null;this.src='assets/images/placeholder.png';">
+        <div class="team-member-overlay">
+          <div class="social-links">
+            ${
+              member.social
+                ? Object.entries(member.social)
+                    .filter(([_, url]) => url && url.trim() !== '')
+                    .map(
+                      ([platform, url]) => `
+                      <a href="${url}" class="social-link ${platform}" target="_blank" rel="noopener noreferrer" title="${platform}">
+                        <i class="fab fa-${platform}"></i>
+                      </a>
+                      `
+                    )
+                    .join("")
+                : ''
+            }
+          </div>
+        </div>
+      </div>
+      <div class="team-member-info">
+        <h4>${member.name}</h4>
+        <p class="team-member-role">${member.role}</p>
+        <p class="team-member-bio">${member.bio}</p>
+      </div>
+    </div>
+    `
+  ).join("");
+}
+
+// Enhanced hero slider initialization
+function initializeHeroSliderEnhanced() {
+  const slides = document.querySelectorAll(".hero-slide");
+  if (slides.length < 2) return;
+
+  // Set first slide as active immediately
+  slides[0].classList.add("active");
+  slides[0].style.opacity = "1";
+
+  let currentSlide = 0;
+
+  function showNextSlide() {
+    slides[currentSlide].classList.remove("active");
+    slides[currentSlide].style.opacity = "0";
+    
+    currentSlide = (currentSlide + 1) % slides.length;
+    
+    slides[currentSlide].classList.add("active");
+    slides[currentSlide].style.opacity = "1";
+  }
+
+  // Start slideshow after 5 seconds
+  setTimeout(() => {
+    heroSlideInterval = setInterval(showNextSlide, 5);
+  }, 5);
+
+  // Pause on hover
+  const hero = document.querySelector(".hero");
+  if (hero) {
+    hero.addEventListener("mouseenter", () => {
+      clearInterval(heroSlideInterval);
+    });
+    hero.addEventListener("mouseleave", () => {
+      clearInterval(heroSlideInterval);
+      heroSlideInterval = setInterval(showNextSlide, 2000);
+    });
+  }
+}
+
+// Image loading validation for supporters
+function validateSupportersImages() {
+  const supporterImages = document.querySelectorAll('.supporter-image img');
+  
+  supporterImages.forEach(img => {
+    img.onerror = function() {
+      const parent = this.parentElement;
+      const role = parent.closest('.supporter-card').querySelector('.supporter-role')?.textContent || '';
+      
+      let iconClass = 'fa-user';
+      if (role.includes('Conservation') || role.includes('Sustainability')) {
+        iconClass = 'fa-leaf';
+      } else if (role.includes('Business') || role.includes('Coach')) {
+        iconClass = 'fa-briefcase';
+      } else if (role.includes('Founder') || role.includes('CEO')) {
+        iconClass = 'fa-crown';
+      }
+      
+      parent.innerHTML = `
+        <div class="placeholder-icon">
+          <i class="fas ${iconClass} fa-2x"></i>
+        </div>
+      `;
+    };
+    
+    if (img.complete && img.naturalHeight === 0) {
+      img.onerror();
+    }
+  });
+}
+
+// ========== INITIALIZATION ==========
+
 // Initialize Application
 function initApp() {
-  console.log(
-    "%c Naa-Wuni Vela",
-    "color: #D4AF37; font-size: 18px; font-weight: bold;",
-  );
-  console.log(
-    "%cPremium Natural Shea Butter",
-    "color: #2C1810; font-size: 14px;",
-  );
+  console.log("%c Naa-Wuni Vela", "color: #D4AF37; font-size: 18px; font-weight: bold;");
+  console.log("%cPremium Natural Shea Butter", "color: #2C1810; font-size: 14px;");
+
+  // Preload hero images immediately
+  preloadHeroImages();
 
   // Hide loading spinner
   hideLoading();
@@ -129,15 +277,18 @@ function initApp() {
   // Initialize all components
   initializeTheme();
   initializeNavigation();
-  initializeHeroSlider();
+  initializeHeroSliderEnhanced();
   initializeProducts();
-  initializeTeam();
+  initializeTeamEnhanced();
   initializeTestimonials();
   initializeTabs();
   initializeScrollAnimations();
   initializeBackToTop();
   initializeCounters();
   initializeVideoHandler();
+  
+  // Validate supporter images
+  setTimeout(validateSupportersImages, 1000);
 
   // Add event listeners
   addEventListeners();
@@ -145,6 +296,8 @@ function initApp() {
   // Initial checks
   checkScrollPosition();
   updateActiveNavLink();
+  
+  console.log("App initialization complete");
 }
 
 // Hide Loading Spinner
@@ -159,8 +312,7 @@ function hideLoading() {
 
 // ========== THEME MANAGEMENT ==========
 function initializeTheme() {
-  const savedTheme =
-    localStorage.getItem("naawuni_theme") || CONFIG.theme.light;
+  const savedTheme = localStorage.getItem("naawuni_theme") || CONFIG.theme.light;
   setTheme(savedTheme);
   updateThemeIcon(savedTheme);
 }
@@ -169,7 +321,6 @@ function setTheme(theme) {
   currentTheme = theme;
   elements.body.setAttribute("data-theme", theme);
   localStorage.setItem("naawuni_theme", theme);
-  enhanceTextVisibility(theme);
 }
 
 function updateThemeIcon(theme) {
@@ -180,84 +331,9 @@ function updateThemeIcon(theme) {
 }
 
 function toggleTheme() {
-  const newTheme =
-    currentTheme === CONFIG.theme.light
-      ? CONFIG.theme.dark
-      : CONFIG.theme.light;
+  const newTheme = currentTheme === CONFIG.theme.light ? CONFIG.theme.dark : CONFIG.theme.light;
   setTheme(newTheme);
   updateThemeIcon(newTheme);
-}
-
-function enhanceTextVisibility(theme) {
-  const textElements = document.querySelectorAll(
-    "h1, h2, h3, h4, h5, h6, p, .text-enhanced",
-  );
-  textElements.forEach((element) => {
-    if (theme === CONFIG.theme.dark) {
-      element.classList.add("text-contrast");
-      if (parseInt(window.getComputedStyle(element).fontWeight) < 500) {
-        element.style.fontWeight = "500";
-      }
-    } else {
-      element.classList.remove("text-contrast");
-      element.style.fontWeight = "";
-    }
-  });
-  updateThemeSpecificStyles(theme);
-}
-
-function updateThemeSpecificStyles(theme) {
-  const styleId = "theme-enhanced-styles";
-  let styleElement = document.getElementById(styleId);
-
-  if (!styleElement) {
-    styleElement = document.createElement("style");
-    styleElement.id = styleId;
-    document.head.appendChild(styleElement);
-  }
-
-  const styles =
-    theme === CONFIG.theme.dark
-      ? `
-    .company-name {
-      background: linear-gradient(135deg, #E8C07D, #D4AF37) !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-    }
-    
-    .hero-title {
-      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5) !important;
-    }
-    
-    .section-title {
-      color: #F5EFE6 !important;
-    }
-    
-    .nav-link {
-      color: #E0D6C9 !important;
-    }
-    
-    .nav-link.active {
-      color: #E8C07D !important;
-    }
-  `
-      : `
-    .company-name {
-      background: linear-gradient(135deg, #D4AF37, #E8C07D) !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-    }
-    
-    .hero-title {
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
-    }
-    
-    .section-title {
-      color: #2C1810 !important;
-    }
-  `;
-
-  styleElement.textContent = styles;
 }
 
 // ========== NAVIGATION ==========
@@ -267,9 +343,7 @@ function initializeNavigation() {
   elements.hamburger.addEventListener("click", () => {
     elements.hamburger.classList.toggle("active");
     elements.navMenu.classList.toggle("active");
-    document.body.style.overflow = elements.navMenu.classList.contains("active")
-      ? "hidden"
-      : "";
+    document.body.style.overflow = elements.navMenu.classList.contains("active") ? "hidden" : "";
   });
 
   const navLinks = document.querySelectorAll(".nav-link");
@@ -282,11 +356,7 @@ function initializeNavigation() {
   });
 
   document.addEventListener("click", (e) => {
-    if (
-      !elements.navMenu.contains(e.target) &&
-      !elements.hamburger.contains(e.target) &&
-      elements.navMenu.classList.contains("active")
-    ) {
+    if (!elements.navMenu.contains(e.target) && !elements.hamburger.contains(e.target) && elements.navMenu.classList.contains("active")) {
       elements.hamburger.classList.remove("active");
       elements.navMenu.classList.remove("active");
       document.body.style.overflow = "";
@@ -294,54 +364,31 @@ function initializeNavigation() {
   });
 }
 
-// ========== HERO SLIDER ==========
-function initializeHeroSlider() {
-  const slides = document.querySelectorAll(".hero-slide");
-  if (slides.length < 2) return;
-
-  let currentSlide = 0;
-
-  function showNextSlide() {
-    slides[currentSlide].classList.remove("active");
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add("active");
-  }
-
-  heroSlideInterval = setInterval(showNextSlide, 5000);
-
-  const hero = document.querySelector(".hero");
-  if (hero) {
-    hero.addEventListener("mouseenter", () => clearInterval(heroSlideInterval));
-    hero.addEventListener("mouseleave", () => {
-      heroSlideInterval = setInterval(showNextSlide, 5000);
-    });
-  }
-}
-
 // ========== PRODUCTS ==========
 function initializeProducts() {
   const productsData = [
     {
       name: "Pure Shea Butter",
-      description:
-        "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
-      price: "GHc60.00/kg",
-      image: "assets/images/shea.jpg",
-      features: ["Unrefined", "Grade A", "Cold Pressed", "No Additives"],
+      description: "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
+      price: "GHc250.00",
+      image: "assets/images/shearr.jpg",
+features: ["Unrefined", "Grade A", "Cold Pr      essed", "No Additives"],
       badge: "Best Seller",
     },
     {
+      name: "Pure Shea Butter",
+      description: "Content",
+      price: "Shea content",
+      image: "assets/images/shea.jpg",
+      features: ["Unrefined", "Grade A", "Cold Pressed", "No Additives"],
+      badge: "Content",
+    },
+    {
       name: "Shea Soap",
-      description:
-        "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
-      price: "GHc25.00/bar",
+      description: "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
+      price: "GHc15.00",
       image: "assets/images/soap.png",
-      features: [
-        "Organic Herbs",
-        "Handmade",
-        "Natural Fragrance",
-        "Eco-friendly",
-      ],
+      features: ["Organic Herbs", "Handmade", "Natural Fragrance", "Eco-friendly"],
       badge: "New",
     },
   ];
@@ -373,11 +420,7 @@ function createProductCard(product, index) {
       <div class="product-features">
         ${product.features.map((feature) => `<span class="feature-tag">${feature}</span>`).join("")}
       </div>
-      <div class="product-footer">
-        <div class="product-price">${product.price}</div>
-        <button class="product-button" onclick="handleProductClick('${product.name}')">
-          <i class="fas fa-shopping-cart"></i> Add to Cart
-        </button>
+
       </div>
     </div>
   `;
@@ -386,47 +429,7 @@ function createProductCard(product, index) {
 }
 
 function handleProductClick(productName) {
-  alert(
-    `"${productName}" added to cart! 🛒\n\nThank you for your interest. Our full e-commerce functionality is coming soon!`,
-  );
-}
-
-// ========== TEAM SECTION ==========
-function initializeTeam() {
-  const teamGrid = document.getElementById("teamGrid");
-  if (!teamGrid) return;
-
-  teamGrid.innerHTML = TEAM_DATA.map(
-    (member, index) => `
-    <div class="team-member-card animate-fade-in" style="animation-delay: ${index * 0.15}s">
-      <div class="team-member-image">
-        <img src="${member.image}" alt="${member.name}" loading="lazy">
-        <div class="team-member-overlay">
-          <div class="social-links">
-            ${
-              member.social
-                ? Object.entries(member.social)
-                    .map(
-                      ([platform, url]) => `
-              <a href="${url}" class="social-link ${platform}" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-${platform}"></i>
-              </a>
-            `,
-                    )
-                    .join("")
-                : ""
-            }
-          </div>
-        </div>
-      </div>
-      <div class="team-member-info">
-        <h4>${member.name}</h4>
-        <p class="team-member-role">${member.role}</p>
-        <p class="team-member-bio">${member.bio}</p>
-      </div>
-    </div>
-  `,
-  ).join("");
+  alert(`"${productName}" added to cart! 🛒\n\nThank you for your interest. Our full e-commerce functionality is coming soon!`);
 }
 
 // ========== TESTIMONIALS ==========
@@ -500,9 +503,7 @@ function nextTestimonial() {
 
 function prevTestimonial() {
   clearInterval(testimonialInterval);
-  currentTestimonial =
-    (currentTestimonial - 1 + TESTIMONIALS_DATA.length) %
-    TESTIMONIALS_DATA.length;
+  currentTestimonial = (currentTestimonial - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length;
   updateTestimonial();
   startTestimonialRotation();
 }
@@ -511,6 +512,20 @@ function prevTestimonial() {
 function initializeTabs() {
   const tabButtons = document.querySelectorAll(".tab-button");
   const tabContents = document.querySelectorAll(".tab-content");
+
+  // Set supporters tab as active by default
+  const supportersTab = document.getElementById("supporters-tab");
+  const supportersButton = document.querySelector('.tab-button[data-tab="supporters"]');
+  
+  if (supportersTab && supportersButton) {
+    // Remove active from all
+    tabContents.forEach(tab => tab.classList.remove("active"));
+    tabButtons.forEach(btn => btn.classList.remove("active"));
+    
+    // Add active to supporters
+    supportersTab.classList.add("active");
+    supportersButton.classList.add("active");
+  }
 
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -527,35 +542,9 @@ function initializeTabs() {
       const targetContent = document.getElementById(`${tabId}-tab`);
       if (targetContent) {
         targetContent.classList.add("active");
-
-        // Initialize animations for newly shown content
-        initializeTabAnimations(tabId);
       }
     });
   });
-
-  // Initialize first tab
-  initializeTabAnimations("story");
-}
-
-function initializeTabAnimations(tabId) {
-  // Add animations based on tab
-  const tabContent = document.getElementById(`${tabId}-tab`);
-  if (!tabContent) return;
-
-  const animatedElements = tabContent.querySelectorAll(
-    ".animate-fade-in, .animate-slide-up, .animate-slide-left, .animate-slide-right",
-  );
-
-  animatedElements.forEach((element, index) => {
-    element.style.animationDelay = `${index * 0.1}s`;
-    element.classList.add("animate-visible");
-  });
-
-  // Initialize counters for impact tab
-  if (tabId === "impact") {
-    initializeCounters();
-  }
 }
 
 // ========== ANIMATED COUNTERS ==========
@@ -565,8 +554,8 @@ function initializeCounters() {
   counters.forEach((counter) => {
     const target = parseInt(counter.dataset.count);
     const suffix = counter.textContent.includes("K") ? "K" : "";
-    const duration = 2000; // 2 seconds
-    const step = target / (duration / 16); // 60fps
+    const duration = 2000;
+    const step = target / (duration / 16);
 
     let current = 0;
 
@@ -576,14 +565,11 @@ function initializeCounters() {
         current = target;
         counter.textContent = suffix ? `${target / 1000}${suffix}` : target;
       } else {
-        counter.textContent = suffix
-          ? `${Math.floor(current / 1000)}${suffix}`
-          : Math.floor(current);
+        counter.textContent = suffix ? `${Math.floor(current / 1000)}${suffix}` : Math.floor(current);
         requestAnimationFrame(updateCounter);
       }
     };
 
-    // Start counter when in view
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -615,13 +601,9 @@ function initializeScrollAnimations() {
     });
   }, observerOptions);
 
-  document
-    .querySelectorAll(
-      ".animate-fade-in, .animate-slide-up, .animate-slide-left, .animate-slide-right",
-    )
-    .forEach((el) => {
-      observer.observe(el);
-    });
+  document.querySelectorAll(".animate-fade-in, .animate-slide-up, .animate-slide-left, .animate-slide-right").forEach((el) => {
+    observer.observe(el);
+  });
 }
 
 // ========== BACK TO TOP ==========
@@ -646,7 +628,6 @@ function initializeBackToTop() {
 
 // ========== VIDEO HANDLER ==========
 function initializeVideoHandler() {
-  // This will be handled by video-handler.js
   const videoContainers = document.querySelectorAll(".video-container");
   videoContainers.forEach((container) => {
     console.log("Video container ready:", container.id);
@@ -666,14 +647,10 @@ function scrollToSection(sectionId) {
     behavior: "smooth",
   });
 
-  // Update active nav link
   updateActiveNavLink();
 
-  // If scrolling to about section, activate first tab
   if (sectionId === "about") {
-    const firstTabButton = document.querySelector(
-      '.tab-button[data-tab="story"]',
-    );
+    const firstTabButton = document.querySelector('.tab-button[data-tab="story"]');
     if (firstTabButton) {
       firstTabButton.click();
     }
@@ -693,10 +670,7 @@ function updateActiveNavLink() {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
 
-    if (
-      scrollPosition >= sectionTop &&
-      scrollPosition < sectionTop + sectionHeight
-    ) {
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
       currentSection = section.id;
     }
   });
@@ -737,19 +711,13 @@ function addEventListeners() {
   });
 
   // Window resize
-  window.addEventListener(
-    "resize",
-    debounce(() => {
-      if (
-        window.innerWidth > 768 &&
-        elements.navMenu.classList.contains("active")
-      ) {
-        elements.hamburger.classList.remove("active");
-        elements.navMenu.classList.remove("active");
-        document.body.style.overflow = "";
-      }
-    }, 250),
-  );
+  window.addEventListener("resize", debounce(() => {
+    if (window.innerWidth > 768 && elements.navMenu.classList.contains("active")) {
+      elements.hamburger.classList.remove("active");
+      elements.navMenu.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  }, 250));
 }
 
 // ========== HELPER FUNCTIONS ==========
