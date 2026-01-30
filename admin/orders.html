@@ -512,10 +512,15 @@
         try {
           // Fetch from serverless endpoint (Netlify/Vercel or local)
           const apiBase = window.API_BASE || "/.netlify/functions";
-          const adminKey = `admin_orders_${new Date().getFullYear()}`;
-          const response = await fetch(
-            `${apiBase}/get-orders?admin_key=${adminKey}`,
-          );
+          // Prefer POST with admin password stored in sessionStorage
+          const adminPassword =
+            sessionStorage.getItem("admin_password_for_api") ||
+            prompt("Enter admin password for server:");
+          const response = await fetch(`${apiBase}/get-orders`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ adminPassword }),
+          });
           const result = await response.json();
 
           if (result.success && result.orders) {

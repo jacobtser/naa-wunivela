@@ -7,7 +7,7 @@ const fs = require("fs");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
   "Content-Type": "application/json",
 };
@@ -26,18 +26,53 @@ exports.handler = async (event) => {
     return jsonResponse({ ok: true });
   }
 
-  // Only GET allowed
-  if (event.httpMethod !== "GET") {
+  // Allow GET (legacy) and POST (preferred)
+  if (event.httpMethod !== "GET" && event.httpMethod !== "POST") {
     return jsonResponse({ success: false, message: "Method not allowed" }, 405);
   }
 
   try {
-    // Check for admin key (optional basic protection)
-    const adminKey = event.queryStringParameters?.admin_key;
+    // Authenticate request
     const expectedKey =
       process.env.ADMIN_KEY || `admin_orders_${new Date().getFullYear()}`;
 
-    if (adminKey !== expectedKey) {
+    let authorized = false;
+
+    // 1) Check POST body for adminPassword (preferred)
+    if (event.httpMethod === "POST") {
+      try {
+        const body = JSON.parse(event.body || "{}");
+        const provided = body.adminPassword || body.admin_key || "";
+        if (
+          provided &&
+          process.env.ADMIN_PASSWORD &&
+          provided === process.env.ADMIN_PASSWORD
+        ) {
+          authorized = true;
+        }
+        // optionally allow admin_key (legacy) in POST body
+        if (
+          !authorized &&
+          provided &&
+          expectedKey &&
+          provided === expectedKey
+        ) {
+          authorized = true;
+        }
+      } catch (e) {
+        // ignore JSON parse errors
+      }
+    }
+
+    // 2) Fallback: check query parameter admin_key (legacy GET)
+    if (!authorized) {
+      const adminKey = event.queryStringParameters?.admin_key;
+      if (adminKey && expectedKey && adminKey === expectedKey) {
+        authorized = true;
+      }
+    }
+
+    if (!authorized) {
       return jsonResponse({ success: false, message: "Unauthorized" }, 401);
     }
 

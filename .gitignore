@@ -120,3 +120,5 @@ env/
 !LICENSE
 
 .automate
+# Local Netlify folder
+.netlify

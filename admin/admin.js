@@ -34,22 +34,22 @@ const AdminPanel = {
       window.location.href = "../index.html";
       return;
     }
-
-    // Simple authentication check (password prompt)
+    // Simple authentication check (collect password and store temporarily)
     const adminAuth = localStorage.getItem("adminAuth");
     if (!adminAuth) {
       const password = prompt("Enter admin password:");
-      if (password === "admin2026") {
-        localStorage.setItem("adminAuth", "true");
-        // Clear the unlock flag after successful entry
-        try {
-          sessionStorage.removeItem("admin_unlocked");
-        } catch (e) {}
-        alert("✓ Authentication successful!");
-      } else {
-        alert("❌ Incorrect password");
+      if (!password) {
+        alert("❌ Password required");
         window.location.href = "../index.html";
+        return;
       }
+      // Store a flag locally and keep the raw password only in sessionStorage for API calls
+      localStorage.setItem("adminAuth", "true");
+      try {
+        sessionStorage.setItem("admin_password_for_api", password);
+        sessionStorage.removeItem("admin_unlocked");
+      } catch (e) {}
+      alert("✓ Authentication stored for this session");
     }
   },
 

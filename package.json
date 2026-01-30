@@ -1,0 +1,17 @@
+{
+  "name": "naa-wunivela",
+  "version": "1.0.0",
+  "description": "Naa-Wuni Vela website with serverless ordering on Netlify",
+  "scripts": {
+    "start": "netlify dev",
+    "build": "echo \"No build step required\"",
+    "test": "echo \"No tests configured\"",
+    "smoke:test": "node scripts/smoke-test.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "devDependencies": {
+    "netlify-cli": "^12.0.0"
+  }
+}
