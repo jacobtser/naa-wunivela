@@ -1,34 +1,61 @@
-# TODO List for Website Updates
+# Order System Implementation Plan
 
-## 1. Fix Testimonies Not Showing
+## Current Status
 
-- [x] Integrate testimonials content into the "Our Story" tab instead of having a separate testimonials tab
-- [x] Remove the separate testimonials tab button and content
-- [x] Add testimonials section within the story tab content
+- ✅ "SHOP NOW" button links to order.html page
+- ✅ Order page with product selection, quantities, customer details exists
+- ✅ Order form handling and validation implemented in js/order.js
+- ✅ Backend order processing and storage implemented in backend/order.php
+- ✅ Backend get_orders.php created for admin to fetch orders
+- ✅ Admin panel JS updated with orders functionality
+- ✅ Order page aesthetics enhanced with modern design
+- ✅ Order form beautified with sections, enhanced inputs, validation states, and visual improvements
+- ⏳ Admin panel HTML needs orders section added
 
-## 2. Add Supporter Section
+## Implementation Steps
 
-- [x] Add a new tab button for "Our Supporters"
-- [x] Create new tab content for supporters with picture and bio
-- [x] Use Stephen Dobia as the supporter (founder) with his existing image and bio
+### Phase 1: Order Page Creation
 
-## 3. Correct Team Member Picture Alignment
+- [x] Create order.html page with product selection, quantities, customer details
+- [x] Create order.js for order form handling and validation
+- [x] Style order page to match site theme
 
-- [x] Update CSS for .team-member-image to center the images properly using flexbox
-- [x] Ensure images remain round and smaller as requested (keep width/height at 50%)
+### Phase 2: Backend Order Handling
 
-## 4. Testing and Verification
+- [x] Create backend/order.php to process and store orders
+- [x] Create backend/get_orders.php for admin to fetch orders
+- [x] Set up database table structure for orders
 
-- [x] Test that testimonials now show in the story tab
-- [x] Verify supporter section displays correctly
-- [x] Check team member picture alignment on different screen sizes
-- [x] Ensure all tabs work properly
+### Phase 3: Admin Panel Enhancement
 
-## Summary of Changes Made:
+- [ ] Add orders section to admin/admin.html
+- [x] Update admin/admin.js to handle orders display and management
+- [x] Add order status update functionality (pending, processing, completed)
 
-- Moved testimonials from separate tab to within the "Our Story" tab
-- Added "Our Supporters" tab with Stephen Dobia's information
-- Fixed team member image alignment by adding flexbox centering
-- Updated tab navigation to include supporters tab
-- Added CSS styles for supporter section
-- Made "Our Story" tab active by default
+### Phase 4: Integration
+
+- [x] Update index.html SHOP NOW button to open order page
+- [x] Update js/main.js to integrate order functionality
+- [x] Add order confirmation system
+
+### Phase 5: Testing & Polish
+
+- [ ] Test order submission from user side
+- [ ] Test order viewing/management in admin panel
+- [ ] Ensure responsive design on all devices
+- [ ] Add loading states and error handling
+- [ ] Test email notifications if implemented
+
+## Files Created
+
+- order.html (exists)
+- js/order.js (exists)
+- backend/order.php (exists)
+- backend/get_orders.php (created)
+
+## Files Edited
+
+- index.html (SHOP NOW button updated to link to order.html)
+- admin/admin.js (orders functionality added)
+- admin/admin.html (orders nav link added, section content pending)
+- order.html (aesthetics enhanced with modern gradients, animations, and premium styling)

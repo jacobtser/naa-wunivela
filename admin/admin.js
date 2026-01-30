@@ -8,6 +8,7 @@ const AdminPanel = {
     documents: [],
     messages: [],
     inquiries: [],
+    orders: [],
   },
 
   init() {
@@ -19,12 +20,31 @@ const AdminPanel = {
   },
 
   checkAuth() {
-    // Simple authentication check
+    // Require a prior triple-click unlock (set in sessionStorage)
+    try {
+      const unlocked = sessionStorage.getItem("admin_unlocked");
+      if (!unlocked) {
+        alert("Unauthorized access. Perform the site unlock action first.");
+        window.location.href = "../index.html";
+        return;
+      }
+    } catch (err) {
+      // If sessionStorage unavailable, treat as unauthorized
+      console.warn("sessionStorage unavailable", err);
+      window.location.href = "../index.html";
+      return;
+    }
+
+    // Simple authentication check (password prompt)
     const adminAuth = localStorage.getItem("adminAuth");
     if (!adminAuth) {
       const password = prompt("Enter admin password:");
       if (password === "admin2026") {
         localStorage.setItem("adminAuth", "true");
+        // Clear the unlock flag after successful entry
+        try {
+          sessionStorage.removeItem("admin_unlocked");
+        } catch (e) {}
         alert("✓ Authentication successful!");
       } else {
         alert("❌ Incorrect password");
@@ -360,6 +380,157 @@ function clearAllData() {
 }
 
 // ==========================================
+// ORDER MANAGEMENT
+// ==========================================
+
+async function loadOrders() {
+  const ordersTable = document.getElementById("ordersList");
+  const ordersSection = document.getElementById("orders");
+
+  if (!ordersTable) {
+    console.error("Orders table not found");
+    return;
+  }
+
+  // Show loading state
+  ordersTable.innerHTML =
+    '<tr><td colspan="7" style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-spin"></i> Loading orders...</td></tr>';
+
+  try {
+    // Try to fetch from backend first
+    const response = await fetch("backend/get_orders.php");
+    const result = await response.json();
+
+    if (result.success && result.orders && result.orders.length > 0) {
+      displayOrders(result.orders);
+      AdminPanel.data.orders = result.orders;
+      AdminPanel.saveData();
+    } else {
+      displayOrders(AdminPanel.data.orders || []);
+    }
+  } catch (error) {
+    console.error("Error loading orders:", error);
+    // Fall back to cached data
+    displayOrders(AdminPanel.data.orders || []);
+  }
+}
+
+function displayOrders(orders) {
+  const tbody = document.getElementById("ordersList");
+
+  if (!tbody) {
+    console.error("Orders table body not found");
+    return;
+  }
+
+  if (orders.length === 0) {
+    tbody.innerHTML =
+      '<tr><td colspan="7" style="text-align: center; color: #999; padding: 20px;">No orders received yet</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = orders
+    .map((order, index) => {
+      const items = Array.isArray(order.items)
+        ? order.items
+        : typeof order.items === "string"
+          ? JSON.parse(order.items)
+          : [];
+      const itemsText = items
+        .map((item) => {
+          const productName = item.product?.name || item.name || "Unknown";
+          const quantity = item.quantity || 0;
+          return `${productName} (x${quantity})`;
+        })
+        .join(", ");
+
+      return `
+      <tr>
+        <td>${order.order_id}</td>
+        <td>${order.customer_name}</td>
+        <td>${order.customer_email}</td>
+        <td>${order.customer_phone}</td>
+        <td>GHc ${parseFloat(order.total_amount).toFixed(2)}</td>
+        <td><span class="status-badge status-${order.status || "pending"}">${(order.status || "pending").toUpperCase()}</span></td>
+        <td>
+          <button class="action-btn" onclick="viewOrderDetails('${index}')">View</button>
+          <button class="action-btn" onclick="updateOrderStatus('${order.order_id}', 'processing')">Process</button>
+          <button class="action-btn delete" onclick="deleteOrder('${order.order_id}')">Delete</button>
+        </td>
+      </tr>
+    `;
+    })
+    .join("");
+}
+
+function viewOrderDetails(orderIndex) {
+  const order = AdminPanel.data.orders[orderIndex];
+  if (!order) return;
+
+  const items = Array.isArray(order.items)
+    ? order.items
+    : typeof order.items === "string"
+      ? JSON.parse(order.items)
+      : [];
+  const itemsHTML = items
+    .map((item) => {
+      const productName = item.product?.name || item.name || "Unknown";
+      const quantity = item.quantity || 0;
+      const price = item.product?.price || item.price || 0;
+      const subtotal = item.subtotal || quantity * price;
+      return `<li>${productName} (x${quantity}) - GHc ${subtotal.toFixed(2)}</li>`;
+    })
+    .join("");
+
+  const details = `
+    <strong>Order ID:</strong> ${order.order_id}<br>
+    <strong>Customer:</strong> ${order.customer_name}<br>
+    <strong>Email:</strong> ${order.customer_email}<br>
+    <strong>Phone:</strong> ${order.customer_phone}<br>
+    <strong>Location:</strong> ${order.customer_location}<br>
+    <strong>Items:</strong>
+    <ul>${itemsHTML}</ul>
+    <strong>Total:</strong> GHc ${parseFloat(order.total_amount).toFixed(2)}<br>
+    <strong>Status:</strong> ${order.status || "pending"}<br>
+    <strong>Date:</strong> ${order.order_date}<br>
+    ${order.special_instructions ? `<strong>Special Instructions:</strong> ${order.special_instructions}<br>` : ""}
+  `;
+
+  alert(details);
+}
+
+function updateOrderStatus(orderId, newStatus) {
+  const orderIndex = AdminPanel.data.orders.findIndex(
+    (o) => o.order_id === orderId,
+  );
+  if (orderIndex !== -1) {
+    AdminPanel.data.orders[orderIndex].status = newStatus;
+    AdminPanel.saveData();
+    loadOrders();
+    showAlert(
+      "ordersAlert",
+      `✓ Order ${orderId} updated to ${newStatus}!`,
+      "success",
+    );
+  }
+}
+
+function deleteOrder(orderId) {
+  if (
+    confirm(
+      "Are you sure you want to delete this order? This cannot be undone.",
+    )
+  ) {
+    AdminPanel.data.orders = AdminPanel.data.orders.filter(
+      (o) => o.order_id !== orderId,
+    );
+    AdminPanel.saveData();
+    loadOrders();
+    showAlert("ordersAlert", `✓ Order ${orderId} deleted!`, "success");
+  }
+}
+
+// ==========================================
 // UTILITY FUNCTIONS
 // ==========================================
 
@@ -379,6 +550,7 @@ function showSection(sectionId) {
   if (sectionId === "videos") updateVideosList();
   if (sectionId === "documents") updateDocsList();
   if (sectionId === "team") updateMessagesList();
+  if (sectionId === "orders") loadOrders();
 }
 
 function showAlert(elementId, message, type) {

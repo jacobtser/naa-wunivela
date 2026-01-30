@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Orders - Naa-Wuni Vela</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      .container {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 250px;
+        background: #2c1810;
+        color: white;
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: #d4af37;
+      }
+
+      .sidebar-nav {
+        list-style: none;
+      }
+
+      .sidebar-nav li {
+        margin-bottom: 1rem;
+      }
+
+      .sidebar-nav a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: 10px 15px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background-color: #d4af37;
+        color: #2c1810;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header h1 {
+        color: #2c1810;
+        font-size: 2rem;
+      }
+
+      .logout-btn {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .logout-btn:hover {
+        background-color: #c0392b;
+      }
+
+      .section {
+        display: none;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      .section h2 {
+        color: #2c1810;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+      }
+
+      .orders-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      .orders-table thead {
+        background-color: #f9f5f0;
+        border-bottom: 2px solid #d4af37;
+      }
+
+      .orders-table th {
+        padding: 15px;
+        text-align: left;
+        color: #2c1810;
+        font-weight: 600;
+      }
+
+      .orders-table td {
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .orders-table tbody tr:hover {
+        background-color: #f9f5f0;
+      }
+
+      .status-badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      .status-pending {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      .status-processing {
+        background-color: #d1ecf1;
+        color: #0c5460;
+      }
+
+      .status-completed {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      .status-cancelled {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .action-btn {
+        padding: 8px 12px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #d4af37;
+        color: #2c1810;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.85rem;
+      }
+
+      .action-btn:hover {
+        background-color: #2c1810;
+        color: #d4af37;
+      }
+
+      .action-btn.delete {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      .action-btn.delete:hover {
+        background-color: #c0392b;
+      }
+
+      .alert {
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        animation: slideIn 0.3s ease;
+      }
+
+      .alert.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .alert.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      .alert.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: linear-gradient(135deg, #d4af37 0%, #e8c07d 100%);
+        padding: 20px;
+        border-radius: 10px;
+        color: #2c1810;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      }
+
+      .stat-card h3 {
+        font-size: 2rem;
+        margin-bottom: 5px;
+      }
+
+      .stat-card p {
+        font-size: 0.9rem;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+      }
+
+      .loading i {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .no-data {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+        font-style: italic;
+      }
+
+      .filters {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 8px 15px;
+        border: 2px solid #d4af37;
+        background: white;
+        color: #2c1810;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #d4af37;
+        color: #2c1810;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          width: 100%;
+        }
+
+        .sidebar-nav {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .sidebar-nav li {
+          margin-bottom: 0;
+          flex: 1;
+          min-width: 150px;
+        }
+
+        .orders-table {
+          font-size: 0.85rem;
+        }
+
+        .orders-table th,
+        .orders-table td {
+          padding: 10px;
+        }
+
+        .action-btn {
+          padding: 6px 8px;
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2>🛍️ Admin Panel</h2>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="#" onclick="showSection('orders')" class="nav-link active"
+              ><span>📦</span> Orders</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="logout()" class="nav-link"
+              ><span>🚪</span> Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+          <div>
+            <h1>📦 Orders Management</h1>
+            <p style="color: #666; margin-top: 5px">
+              Manage all customer orders
+            </p>
+          </div>
+          <button class="logout-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="section active" id="orders">
+          <h2>All Orders</h2>
+
+          <div class="stats">
+            <div class="stat-card">
+              <h3 id="totalOrders">0</h3>
+              <p>Total Orders</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="pendingOrders">0</h3>
+              <p>Pending</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="processingOrders">0</h3>
+              <p>Processing</p>
+            </div>
+            <div class="stat-card">
+              <h3 id="completedOrders">0</h3>
+              <p>Completed</p>
+            </div>
+          </div>
+
+          <div id="ordersAlert"></div>
+
+          <div class="filters">
+            <button class="filter-btn active" onclick="filterOrders('all')">
+              All
+            </button>
+            <button class="filter-btn" onclick="filterOrders('pending')">
+              Pending
+            </button>
+            <button class="filter-btn" onclick="filterOrders('processing')">
+              Processing
+            </button>
+            <button class="filter-btn" onclick="filterOrders('completed')">
+              Completed
+            </button>
+          </div>
+
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersList">
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 40px">
+                  <i class="fas fa-spinner fa-spin"></i> Loading orders...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="admin.js"></script>
+    <script>
+      // Initialize on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        AdminPanel.init();
+        loadOrders();
+      });
+
+      let currentFilter = "all";
+      let allOrders = [];
+
+      function filterOrders(status) {
+        currentFilter = status;
+
+        // Update filter buttons
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        event.target.classList.add("active");
+
+        // Filter and display
+        if (status === "all") {
+          displayOrders(allOrders);
+        } else {
+          const filtered = allOrders.filter(
+            (order) => (order.status || "pending") === status,
+          );
+          displayOrders(filtered);
+        }
+      }
+
+      function showSection(sectionId) {
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.remove("active"));
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.classList.add("active");
+          if (sectionId === "orders") {
+            loadOrders();
+          }
+        }
+      }
+
+      function showAlert(message, type = "success") {
+        const alertDiv = document.getElementById("ordersAlert");
+        const alert = document.createElement("div");
+        alert.className = `alert ${type}`;
+        alert.textContent = message;
+        alertDiv.innerHTML = "";
+        alertDiv.appendChild(alert);
+
+        setTimeout(() => {
+          alert.style.opacity = "0";
+          alert.style.transition = "opacity 0.3s";
+          setTimeout(() => alert.remove(), 300);
+        }, 5000);
+      }
+
+      async function loadOrders() {
+        const tbody = document.getElementById("ordersList");
+        tbody.innerHTML =
+          '<tr><td colspan="7" style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin"></i> Loading orders...</td></tr>';
+
+        try {
+          // Fetch from serverless endpoint (Netlify/Vercel or local)
+          const apiBase = window.API_BASE || "/.netlify/functions";
+          const adminKey = `admin_orders_${new Date().getFullYear()}`;
+          const response = await fetch(
+            `${apiBase}/get-orders?admin_key=${adminKey}`,
+          );
+          const result = await response.json();
+
+          if (result.success && result.orders) {
+            allOrders = result.orders;
+            AdminPanel.data.orders = result.orders;
+            AdminPanel.saveData();
+            updateStats();
+            filterOrders(currentFilter);
+          } else {
+            displayOrders(AdminPanel.data.orders || []);
+          }
+        } catch (error) {
+          console.error("Error loading orders:", error);
+          displayOrders(AdminPanel.data.orders || []);
+          showAlert(
+            "⚠️ Using cached orders. Backend may be unavailable.",
+            "info",
+          );
+        }
+      }
+
+      function updateStats() {
+        const total = allOrders.length;
+        const pending = allOrders.filter(
+          (o) => (o.status || "pending") === "pending",
+        ).length;
+        const processing = allOrders.filter(
+          (o) => o.status === "processing",
+        ).length;
+        const completed = allOrders.filter(
+          (o) => o.status === "completed",
+        ).length;
+
+        document.getElementById("totalOrders").textContent = total;
+        document.getElementById("pendingOrders").textContent = pending;
+        document.getElementById("processingOrders").textContent = processing;
+        document.getElementById("completedOrders").textContent = completed;
+      }
+
+      function displayOrders(orders) {
+        const tbody = document.getElementById("ordersList");
+
+        if (orders.length === 0) {
+          tbody.innerHTML =
+            '<tr><td colspan="7" style="text-align: center; color: #999; padding: 40px;">No orders found</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = orders
+          .map((order, index) => {
+            const items = Array.isArray(order.items)
+              ? order.items
+              : typeof order.items === "string"
+                ? JSON.parse(order.items)
+                : [];
+            const status = order.status || "pending";
+
+            return `
+                    <tr>
+                        <td><strong>${order.order_id}</strong></td>
+                        <td>${order.customer_name}</td>
+                        <td>${order.customer_email}</td>
+                        <td>${order.customer_phone}</td>
+                        <td><strong>GHc ${parseFloat(order.total_amount).toFixed(2)}</strong></td>
+                        <td><span class="status-badge status-${status}">${status.toUpperCase()}</span></td>
+                        <td>
+                            <button class="action-btn" onclick="viewDetails(${allOrders.findIndex((o) => o.order_id === order.order_id)})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            ${
+                              status !== "completed"
+                                ? `
+                            <button class="action-btn" onclick="updateStatus('${order.order_id}', 'processing')">
+                                <i class="fas fa-cog"></i> Process
+                            </button>`
+                                : ""
+                            }
+                            <button class="action-btn delete" onclick="deleteOrderConfirm('${order.order_id}')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+          })
+          .join("");
+      }
+
+      function viewDetails(index) {
+        const order = allOrders[index];
+        if (!order) return;
+
+        const items = Array.isArray(order.items)
+          ? order.items
+          : typeof order.items === "string"
+            ? JSON.parse(order.items)
+            : [];
+        const itemsHTML = items
+          .map((item) => {
+            const productName = item.product?.name || item.name || "Unknown";
+            const qty = item.quantity || 0;
+            const price = item.subtotal || qty * (item.product?.price || 0);
+            return `• ${productName} (x${qty}) - GHc ${price.toFixed(2)}`;
+          })
+          .join("\n");
+
+        const details = `
+ORDER DETAILS
+═══════════════════════════════════
+
+Order ID: ${order.order_id}
+Date: ${order.order_date}
+Status: ${order.status || "pending"}
+
+CUSTOMER INFORMATION
+─────────────────────────────────────
+Name: ${order.customer_name}
+Email: ${order.customer_email}
+Phone: ${order.customer_phone}
+Location: ${order.customer_location}
+
+ITEMS
+─────────────────────────────────────
+${itemsHTML}
+
+${
+  order.special_instructions
+    ? `
+SPECIAL INSTRUCTIONS
+─────────────────────────────────────
+${order.special_instructions}`
+    : ""
+}
+
+TOTAL: GHc ${parseFloat(order.total_amount).toFixed(2)}
+            `;
+
+        alert(details);
+      }
+
+      function updateStatus(orderId, newStatus) {
+        const index = allOrders.findIndex((o) => o.order_id === orderId);
+        if (index !== -1) {
+          allOrders[index].status = newStatus;
+          AdminPanel.data.orders = allOrders;
+          AdminPanel.saveData();
+          updateStats();
+          filterOrders(currentFilter);
+          showAlert(`✓ Order ${orderId} updated to ${newStatus}!`);
+        }
+      }
+
+      function deleteOrderConfirm(orderId) {
+        if (
+          confirm(
+            "Are you sure you want to delete this order? This action cannot be undone.",
+          )
+        ) {
+          deleteOrder(orderId);
+        }
+      }
+
+      function deleteOrder(orderId) {
+        allOrders = allOrders.filter((o) => o.order_id !== orderId);
+        AdminPanel.data.orders = allOrders;
+        AdminPanel.saveData();
+        updateStats();
+        filterOrders(currentFilter);
+        showAlert(`✓ Order ${orderId} deleted!`);
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("adminAuth");
+          window.location.href = "../index.html";
+        }
+      }
+    </script>
+  </body>
+</html>

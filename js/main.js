@@ -24,8 +24,10 @@ const TEAM_DATA = [
     image: "assets/images/team/Stephen.png",
     social: {
       facebook: "https://www.fb.com/l/6lp1kJRRR",
-      instagram: "https://www.instagram.com/invites/contact/?igsh=4jksbir9p26p&utm_content=u5imiah",
-      linkedin: "https://www.linkedin.com/in/stephen-andrews-dobia-298733322/?originalSubdomain=gh",
+      instagram:
+        "https://www.instagram.com/invites/contact/?igsh=4jksbir9p26p&utm_content=u5imiah",
+      linkedin:
+        "https://www.linkedin.com/in/stephen-andrews-dobia-298733322/?originalSubdomain=gh",
     },
   },
   {
@@ -54,7 +56,8 @@ const TEAM_DATA = [
     social: {
       facebook: "https://www.facebook.com/jacob.tser/",
       twitter: "https://x.com/JacobTser418",
-      linkedin: "https://www.linkedin.com/in/jacob-tser-doku-1360a8202/overlay/contact-info/",
+      linkedin:
+        "https://www.linkedin.com/in/jacob-tser-doku-1360a8202/overlay/contact-info/",
       github: "https://github.com/jacobtser",
       ID: "https://angelbluef65-tech.github.io/my_portfolio/",
     },
@@ -127,32 +130,32 @@ const elements = {
 // Preload hero images for immediate display
 function preloadHeroImages() {
   console.log("Preloading hero images...");
-  
+
   const heroImages = [
-    'assets/images/1.png',
-    'assets/images/2.png',
-    'assets/images/3.png',
-    'assets/images/4.png',
-    'assets/images/11.png',
-    'assets/images/22.png',
-    'assets/images/33.png',
-    'assets/images/44.png',
-    'assets/images/55.png',
-    'assets/images/5.jpeg'
+    "assets/images/1.png",
+    "assets/images/2.png",
+    "assets/images/3.png",
+    "assets/images/4.png",
+    "assets/images/11.png",
+    "assets/images/22.png",
+    "assets/images/33.png",
+    "assets/images/44.png",
+    "assets/images/55.png",
+    "assets/images/5.jpeg",
   ];
-  
+
   // Preload all images
-  heroImages.forEach(src => {
+  heroImages.forEach((src) => {
     const img = new Image();
     img.src = src;
   });
-  
+
   // Set first slide as active immediately
   setTimeout(() => {
-    const slides = document.querySelectorAll('.hero-slide');
+    const slides = document.querySelectorAll(".hero-slide");
     if (slides.length > 0) {
-      slides[0].classList.add('active');
-      slides[0].style.opacity = '1';
+      slides[0].classList.add("active");
+      slides[0].style.opacity = "1";
     }
   }, 100);
 }
@@ -172,16 +175,16 @@ function initializeTeamEnhanced() {
             ${
               member.social
                 ? Object.entries(member.social)
-                    .filter(([_, url]) => url && url.trim() !== '')
+                    .filter(([_, url]) => url && url.trim() !== "")
                     .map(
                       ([platform, url]) => `
                       <a href="${url}" class="social-link ${platform}" target="_blank" rel="noopener noreferrer" title="${platform}">
                         <i class="fab fa-${platform}"></i>
                       </a>
-                      `
+                      `,
                     )
                     .join("")
-                : ''
+                : ""
             }
           </div>
         </div>
@@ -192,7 +195,7 @@ function initializeTeamEnhanced() {
         <p class="team-member-bio">${member.bio}</p>
       </div>
     </div>
-    `
+    `,
   ).join("");
 }
 
@@ -210,9 +213,9 @@ function initializeHeroSliderEnhanced() {
   function showNextSlide() {
     slides[currentSlide].classList.remove("active");
     slides[currentSlide].style.opacity = "0";
-    
+
     currentSlide = (currentSlide + 1) % slides.length;
-    
+
     slides[currentSlide].classList.add("active");
     slides[currentSlide].style.opacity = "1";
   }
@@ -237,29 +240,31 @@ function initializeHeroSliderEnhanced() {
 
 // Image loading validation for supporters
 function validateSupportersImages() {
-  const supporterImages = document.querySelectorAll('.supporter-image img');
-  
-  supporterImages.forEach(img => {
-    img.onerror = function() {
+  const supporterImages = document.querySelectorAll(".supporter-image img");
+
+  supporterImages.forEach((img) => {
+    img.onerror = function () {
       const parent = this.parentElement;
-      const role = parent.closest('.supporter-card').querySelector('.supporter-role')?.textContent || '';
-      
-      let iconClass = 'fa-user';
-      if (role.includes('Conservation') || role.includes('Sustainability')) {
-        iconClass = 'fa-leaf';
-      } else if (role.includes('Business') || role.includes('Coach')) {
-        iconClass = 'fa-briefcase';
-      } else if (role.includes('Founder') || role.includes('CEO')) {
-        iconClass = 'fa-crown';
+      const role =
+        parent.closest(".supporter-card").querySelector(".supporter-role")
+          ?.textContent || "";
+
+      let iconClass = "fa-user";
+      if (role.includes("Conservation") || role.includes("Sustainability")) {
+        iconClass = "fa-leaf";
+      } else if (role.includes("Business") || role.includes("Coach")) {
+        iconClass = "fa-briefcase";
+      } else if (role.includes("Founder") || role.includes("CEO")) {
+        iconClass = "fa-crown";
       }
-      
+
       parent.innerHTML = `
         <div class="placeholder-icon">
           <i class="fas ${iconClass} fa-2x"></i>
         </div>
       `;
     };
-    
+
     if (img.complete && img.naturalHeight === 0) {
       img.onerror();
     }
@@ -270,8 +275,14 @@ function validateSupportersImages() {
 
 // Initialize Application
 function initApp() {
-  console.log("%c Naa-Wuni Vela", "color: #D4AF37; font-size: 18px; font-weight: bold;");
-  console.log("%cPremium Natural Shea Butter", "color: #2C1810; font-size: 14px;");
+  console.log(
+    "%c Naa-Wuni Vela",
+    "color: #D4AF37; font-size: 18px; font-weight: bold;",
+  );
+  console.log(
+    "%cPremium Natural Shea Butter",
+    "color: #2C1810; font-size: 14px;",
+  );
 
   // Preload hero images immediately
   preloadHeroImages();
@@ -291,7 +302,7 @@ function initApp() {
   initializeBackToTop();
   initializeCounters();
   initializeVideoHandler();
-  
+
   // Validate supporter images
   setTimeout(validateSupportersImages, 1000);
 
@@ -301,7 +312,7 @@ function initApp() {
   // Initial checks
   checkScrollPosition();
   updateActiveNavLink();
-  
+
   console.log("App initialization complete");
 }
 
@@ -317,7 +328,8 @@ function hideLoading() {
 
 // ========== THEME MANAGEMENT ==========
 function initializeTheme() {
-  const savedTheme = localStorage.getItem("naawuni_theme") || CONFIG.theme.light;
+  const savedTheme =
+    localStorage.getItem("naawuni_theme") || CONFIG.theme.light;
   setTheme(savedTheme);
   updateThemeIcon(savedTheme);
 }
@@ -336,7 +348,10 @@ function updateThemeIcon(theme) {
 }
 
 function toggleTheme() {
-  const newTheme = currentTheme === CONFIG.theme.light ? CONFIG.theme.dark : CONFIG.theme.light;
+  const newTheme =
+    currentTheme === CONFIG.theme.light
+      ? CONFIG.theme.dark
+      : CONFIG.theme.light;
   setTheme(newTheme);
   updateThemeIcon(newTheme);
 }
@@ -348,7 +363,9 @@ function initializeNavigation() {
   elements.hamburger.addEventListener("click", () => {
     elements.hamburger.classList.toggle("active");
     elements.navMenu.classList.toggle("active");
-    document.body.style.overflow = elements.navMenu.classList.contains("active") ? "hidden" : "";
+    document.body.style.overflow = elements.navMenu.classList.contains("active")
+      ? "hidden"
+      : "";
   });
 
   const navLinks = document.querySelectorAll(".nav-link");
@@ -361,7 +378,11 @@ function initializeNavigation() {
   });
 
   document.addEventListener("click", (e) => {
-    if (!elements.navMenu.contains(e.target) && !elements.hamburger.contains(e.target) && elements.navMenu.classList.contains("active")) {
+    if (
+      !elements.navMenu.contains(e.target) &&
+      !elements.hamburger.contains(e.target) &&
+      elements.navMenu.classList.contains("active")
+    ) {
       elements.hamburger.classList.remove("active");
       elements.navMenu.classList.remove("active");
       document.body.style.overflow = "";
@@ -374,7 +395,8 @@ function initializeProducts() {
   const productsData = [
     {
       name: "Pure Shea Butter",
-      description: "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
+      description:
+        "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
       price: "GHc250.00",
       image: "assets/images/shearr.jpg",
       features: ["Unrefined", "Grade A", "No Additives"],
@@ -390,7 +412,8 @@ function initializeProducts() {
     },
     {
       name: "Shea / Neem Soap",
-      description: "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
+      description:
+        "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
       price: "GHc15.00",
       image: "assets/images/soap.png",
       features: ["Organic Herbs", "Natural Fragrance", "Eco-friendly"],
@@ -434,7 +457,9 @@ function createProductCard(product, index) {
 }
 
 function handleProductClick(productName) {
-  alert(`"${productName}" added to cart! 🛒\n\nThank you for your interest. Our full e-commerce functionality is coming soon!`);
+  alert(
+    `"${productName}" added to cart! 🛒\n\nThank you for your interest. Our full e-commerce functionality is coming soon!`,
+  );
 }
 
 // ========== TESTIMONIALS ==========
@@ -508,7 +533,9 @@ function nextTestimonial() {
 
 function prevTestimonial() {
   clearInterval(testimonialInterval);
-  currentTestimonial = (currentTestimonial - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length;
+  currentTestimonial =
+    (currentTestimonial - 1 + TESTIMONIALS_DATA.length) %
+    TESTIMONIALS_DATA.length;
   updateTestimonial();
   startTestimonialRotation();
 }
@@ -520,13 +547,15 @@ function initializeTabs() {
 
   // Set supporters tab as active by default
   const supportersTab = document.getElementById("supporters-tab");
-  const supportersButton = document.querySelector('.tab-button[data-tab="supporters"]');
-  
+  const supportersButton = document.querySelector(
+    '.tab-button[data-tab="supporters"]',
+  );
+
   if (supportersTab && supportersButton) {
     // Remove active from all
-    tabContents.forEach(tab => tab.classList.remove("active"));
-    tabButtons.forEach(btn => btn.classList.remove("active"));
-    
+    tabContents.forEach((tab) => tab.classList.remove("active"));
+    tabButtons.forEach((btn) => btn.classList.remove("active"));
+
     // Add active to supporters
     supportersTab.classList.add("active");
     supportersButton.classList.add("active");
@@ -570,7 +599,9 @@ function initializeCounters() {
         current = target;
         counter.textContent = suffix ? `${target / 1000}${suffix}` : target;
       } else {
-        counter.textContent = suffix ? `${Math.floor(current / 1000)}${suffix}` : Math.floor(current);
+        counter.textContent = suffix
+          ? `${Math.floor(current / 1000)}${suffix}`
+          : Math.floor(current);
         requestAnimationFrame(updateCounter);
       }
     };
@@ -606,9 +637,13 @@ function initializeScrollAnimations() {
     });
   }, observerOptions);
 
-  document.querySelectorAll(".animate-fade-in, .animate-slide-up, .animate-slide-left, .animate-slide-right").forEach((el) => {
-    observer.observe(el);
-  });
+  document
+    .querySelectorAll(
+      ".animate-fade-in, .animate-slide-up, .animate-slide-left, .animate-slide-right",
+    )
+    .forEach((el) => {
+      observer.observe(el);
+    });
 }
 
 // ========== BACK TO TOP ==========
@@ -655,7 +690,9 @@ function scrollToSection(sectionId) {
   updateActiveNavLink();
 
   if (sectionId === "about") {
-    const firstTabButton = document.querySelector('.tab-button[data-tab="story"]');
+    const firstTabButton = document.querySelector(
+      '.tab-button[data-tab="story"]',
+    );
     if (firstTabButton) {
       firstTabButton.click();
     }
@@ -675,7 +712,10 @@ function updateActiveNavLink() {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
 
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+    if (
+      scrollPosition >= sectionTop &&
+      scrollPosition < sectionTop + sectionHeight
+    ) {
       currentSection = section.id;
     }
   });
@@ -716,13 +756,19 @@ function addEventListeners() {
   });
 
   // Window resize
-  window.addEventListener("resize", debounce(() => {
-    if (window.innerWidth > 768 && elements.navMenu.classList.contains("active")) {
-      elements.hamburger.classList.remove("active");
-      elements.navMenu.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-  }, 250));
+  window.addEventListener(
+    "resize",
+    debounce(() => {
+      if (
+        window.innerWidth > 768 &&
+        elements.navMenu.classList.contains("active")
+      ) {
+        elements.hamburger.classList.remove("active");
+        elements.navMenu.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    }, 250),
+  );
 }
 
 // ========== HELPER FUNCTIONS ==========
@@ -745,9 +791,140 @@ window.nextTestimonial = nextTestimonial;
 window.prevTestimonial = prevTestimonial;
 window.initApp = initApp;
 
+// Check for Formspree success redirect
+function checkFormSuccess() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("success") === "true") {
+    // Remove the query parameter from URL
+    const newUrl = window.location.pathname;
+    window.history.replaceState({}, document.title, newUrl);
+
+    // Show success message
+    setTimeout(() => {
+      const form = document.getElementById("contactForm");
+      if (form) {
+        const message = document.createElement("div");
+        message.className = "form-message success";
+        message.innerHTML = `
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong>Success!</strong>
+            <p>Your message has been sent. We'll get back to you soon.</p>
+          </div>
+        `;
+        message.style.cssText = `
+          padding: 1rem;
+          border-radius: var(--radius-md);
+          background: rgba(46, 204, 113, 0.1);
+          border: 1px solid #2ecc71;
+          color: #27ae60;
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+        `;
+
+        form.prepend(message);
+        message.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        // Auto-remove success message
+        setTimeout(() => {
+          message.style.opacity = "0";
+          message.style.transition = "opacity 0.3s ease";
+          setTimeout(() => message.remove(), 300);
+        }, 5000);
+      }
+    }, 1000);
+  }
+}
+
 // Initialize when DOM is ready
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initApp);
+  document.addEventListener("DOMContentLoaded", () => {
+    initApp();
+    checkFormSuccess();
+  });
 } else {
   initApp();
+  checkFormSuccess();
 }
+
+// Triple-click unlock for admin access
+// Listens for three clicks within 800ms anywhere on the page.
+(() => {
+  let clickCount = 0;
+  let clickTimer = null;
+  const CLICK_WINDOW = 800; // ms
+
+  function resetClicks() {
+    clickCount = 0;
+    if (clickTimer) {
+      clearTimeout(clickTimer);
+      clickTimer = null;
+    }
+  }
+
+  document.addEventListener(
+    "click",
+    (e) => {
+      // Ignore clicks on form inputs to avoid accidental unlocks
+      const tag =
+        e.target && e.target.tagName ? e.target.tagName.toLowerCase() : "";
+      if (["input", "textarea", "button", "a", "select"].includes(tag)) return;
+
+      clickCount += 1;
+      if (!clickTimer) {
+        clickTimer = setTimeout(resetClicks, CLICK_WINDOW);
+      }
+
+      if (clickCount === 3) {
+        // set unlock flag for admin and navigate
+        try {
+          sessionStorage.setItem("admin_unlocked", "1");
+        } catch (err) {
+          console.warn("Could not set sessionStorage for admin unlock", err);
+        }
+        // Open admin page for authentication
+        window.location.href = "admin/orders.html";
+        resetClicks();
+      }
+    },
+    { passive: true },
+  );
+})();
+
+// Basic client-side deterrents to discourage casual source inspection
+(function () {
+  // Disable right-click context menu
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+
+  // Block common developer tools shortcuts
+  document.addEventListener(
+    "keydown",
+    function (e) {
+      // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+      if (e.keyCode === 123) {
+        e.preventDefault();
+        return false;
+      }
+      if (
+        e.ctrlKey &&
+        e.shiftKey &&
+        (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j")
+      ) {
+        e.preventDefault();
+        return false;
+      }
+      if (
+        e.ctrlKey &&
+        (e.key === "U" || e.key === "u" || e.key === "s" || e.key === "S")
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    },
+    false,
+  );
+})();

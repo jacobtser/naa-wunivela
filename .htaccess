@@ -1,8 +1,44 @@
+# Prevent directory listing
+
+Options -Indexes
+
+# Deny access to sensitive file types
+
+<FilesMatch "\.(env|sql|log|ini|phps|sh|bak|git|htaccess)$">
+Require all denied
+</FilesMatch>
+
+# Protect PHP source files from being downloaded (Apache-specific)
+
+<FilesMatch "\.php$">
+<IfModule mod_authz_core.c>
+Require all granted
+</IfModule>
+</FilesMatch>
+
+# Basic security headers
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Prevent access to backup_orders by web (move outside webroot in production)
+
+<Directory "${DOCUMENT_ROOT}/backup_orders">
+Require all denied
+</Directory>
+
 # ==========================================
+
 # SHEAR BUTTER - SECURITY CONFIGURATION
+
 # ==========================================
 
 # Enable HTTPS
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTPS} off
@@ -10,36 +46,41 @@
 </IfModule>
 
 # Prevent directory listing
+
 Options -Indexes
 
 # Disable access to sensitive files
+
 <FilesMatch "^\.">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order allow,deny
-        Deny from all
-    </IfModule>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order allow,deny
+Deny from all
+</IfModule>
 </FilesMatch>
 
 # Protect specific directories
+
 <DirectoryMatch "^/admin">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
 </DirectoryMatch>
 
 # Protect JavaScript files from direct access
+
 <FilesMatch "\.js$">
-    <IfModule mod_headers.c>
-        Header set Cache-Control "private, no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "0"
-    </IfModule>
+<IfModule mod_headers.c>
+Header set Cache-Control "private, no-cache, no-store, must-revalidate"
+Header set Pragma "no-cache"
+Header set Expires "0"
+</IfModule>
 </FilesMatch>
 
 # Prevent hotlinking of JavaScript files
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTP_REFERER} !^$
@@ -50,24 +91,27 @@ Options -Indexes
 </IfModule>
 
 # Protect backend files
+
 <FilesMatch "\.php$">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
 </FilesMatch>
 
 # Block access to git files
+
 <FilesMatch "\.git">
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order allow,deny
-        Deny from all
-    </IfModule>
+<IfModule mod_authz_core.c>
+Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+Order allow,deny
+Deny from all
+</IfModule>
 </FilesMatch>
 
 # Prevent hotlinking
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTP_REFERER} !^$
@@ -76,6 +120,7 @@ Options -Indexes
 </IfModule>
 
 # Security Headers
+
 <IfModule mod_headers.c>
     # Prevent clickjacking
     Header always append X-Frame-Options "SAMEORIGIN"
@@ -97,15 +142,17 @@ Options -Indexes
 </IfModule>
 
 # Disable execution of scripts in certain directories
+
 <Directory /assets/images>
-    php_flag engine off
+php_flag engine off
 </Directory>
 
 <Directory /assets/documents>
-    php_flag engine off
+php_flag engine off
 </Directory>
 
 # Cache control for static assets
+
 <IfModule mod_expires.c>
     ExpiresActive On
     
@@ -127,6 +174,7 @@ Options -Indexes
 </IfModule>
 
 # Compression
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/html
@@ -141,12 +189,14 @@ Options -Indexes
 </IfModule>
 
 # Disable ETags for better security
+
 <IfModule mod_headers.c>
     Header unset ETag
     FileETag None
 </IfModule>
 
 # Block bad bots and scrapers
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTP_USER_AGENT} (bot|spider|crawler|scraper|curl|wget) [NC]
@@ -154,12 +204,14 @@ Options -Indexes
 </IfModule>
 
 # Rate limiting (limit requests per IP)
+
 <IfModule mod_ratelimit.c>
     SetOutputFilter RATE_LIMIT
     RateLimitZone static 10 10
 </IfModule>
 
 # Disable trace requests
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteRule ^(.*)$ - [F,L]
