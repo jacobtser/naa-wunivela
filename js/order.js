@@ -8,7 +8,7 @@
 const ORDER_PRODUCTS = [
   {
     id: "shea-butter-250g",
-    name: "Pure Shea Butter (250g)",
+    name: "Pure Shea Butter (4kg)",
     description:
       "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
     price: 250.0,
@@ -18,26 +18,41 @@ const ORDER_PRODUCTS = [
     minQuantity: 1,
     maxQuantity: 99999,
   },
+
   {
-    id: "shea-butter-500g",
-    name: "Pure Shea Butter (500g)",
+    id: "purely whipped shea",
+    name: "Whipped Shea butter",
     description:
-      "Premium grade shea butter in larger quantity. Excellent for body care and therapeutic use.",
-    price: 20.0,
-    image: "assets/images/shea.jpg",
-    features: ["Unrefined", "Grade A", "No Additives"],
-    badge: "Value Pack",
+      "Natural shea butter or with essential oils. Gentle and nourishing.",
+    price: 25.0,
+    image: "assets/images/25.png",
+    features: ["Natural Fragrance", "Eco-friendly"],
+    badge: "New",
     minQuantity: 1,
     maxQuantity: 999999,
   },
+
   {
-    id: "shea-soap",
-    name: "Shea / Neem Soap",
+    id: "Whipped shea",
+    name: "Whipped shea (Medium size)",
     description:
-      "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
-    price: 20.0,
-    image: "assets/images/soap.png",
-    features: ["Organic Herbs", "Natural Fragrance", "Eco-friendly"],
+      "Natural shea butter or with essential oils. Gentle and nourishing.",
+    price: 40.0,
+    image: "assets/images/40.png",
+    features: ["Natural Fragrance", "Eco-friendly"],
+    badge: "New",
+    minQuantity: 1,
+    maxQuantity: 999999,
+  },
+
+  {
+    id: "Whipped Shea",
+    name: "Whipped shea (Large)",
+    description:
+      "Natural shea butter or with essential oils. Gentle and nourishing.",
+    price: 60.0,
+    image: "assets/images/60.png",
+    features: ["Natural Fragrance", "Eco-friendly"],
     badge: "New",
     minQuantity: 1,
     maxQuantity: 999999,

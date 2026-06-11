@@ -12,7 +12,7 @@ const AdminPanel = {
   },
 
   init() {
-    console.log("🔧 Admin Panel Initialized");
+    console.log(" Admin Panel Initialized");
     this.checkAuth();
     this.loadData();
     this.attachEventListeners();
@@ -24,7 +24,7 @@ const AdminPanel = {
     try {
       const unlocked = sessionStorage.getItem("admin_unlocked");
       if (!unlocked) {
-        alert("Unauthorized access. Perform the site unlock action first.");
+        alert("Unauthorized access. Thou shalt do the right thing");
         window.location.href = "../index.html";
         return;
       }
@@ -118,7 +118,7 @@ function addVideo(event) {
   const desc = document.getElementById("videoDesc").value;
 
   if (!title || !url) {
-    showAlert("videoAlert", "Please fill all required fields", "error");
+    showAlert("videoAlert", "Kindly fill all required fields", "error");
     return;
   }
 
@@ -356,11 +356,13 @@ function saveSettings(event) {
 
 function clearAllData() {
   if (
-    confirm("⚠️ This will delete ALL data from the admin panel. Are you sure?")
+    confirm(
+      "⚠️ Is this Stephen or Williams because Jacob wouldn't do this. This will delete ALL data from the admin panel. Are you sure?",
+    )
   ) {
     if (
       confirm(
-        'This action cannot be undone. Type "DELETE" in the prompt to confirm.',
+        'Kindly know that this action cannot be undone. Type "DELETE" in the prompt to confirm.',
       )
     ) {
       const confirmation = prompt("Type DELETE to confirm:");
@@ -372,7 +374,7 @@ function clearAllData() {
           messages: [],
           inquiries: [],
         };
-        alert("✓ All data cleared!");
+        alert("✓ All data cleared! Please, don't call Jacob to rectify it");
         location.reload();
       }
     }

@@ -403,20 +403,27 @@ function initializeProducts() {
       badge: "Best Seller",
     },
     {
-      name: "Pure Shea Butter",
-      description: "Content",
-      price: "Shea content",
-      image: "assets/images/shea.jpg",
-      features: ["Unrefined", "Grade A", "No Additives"],
-      badge: "Content",
+      name: "Whipped Raw Shea Package",
+      description: "Purely whipped shea.",
+      price: "GHc25.00",
+      image: "assets/images/25.png",
+      features: ["Natural Fragrance", "Eco-friendly"],
+      badge: "New",
     },
     {
-      name: "Shea / Neem Soap",
-      description:
-        "Handmade shea soap with organic herbs and essential oils. Gentle and nourishing.",
-      price: "GHc15.00",
-      image: "assets/images/soap.png",
-      features: ["Organic Herbs", "Natural Fragrance", "Eco-friendly"],
+      name: "Whipped Raw Shea Package",
+      description: "Purely whipped shea.",
+      price: "GHc40.00",
+      image: "assets/images/40.png",
+      features: ["Natural Fragrance", "Eco-friendly"],
+      badge: "New",
+    },
+    {
+      name: "Whipped Raw Shea Package",
+      description: "Purely whipped shea.",
+      price: "GHc60.00",
+      image: "assets/images/60.png",
+      features: ["Natural Fragrance", "Eco-friendly"],
       badge: "New",
     },
   ];
@@ -854,7 +861,7 @@ if (document.readyState === "loading") {
 (() => {
   let clickCount = 0;
   let clickTimer = null;
-  const CLICK_WINDOW = 800; // ms
+  const CLICK_WINDOW = 2000; // ms
 
   function resetClicks() {
     clickCount = 0;
