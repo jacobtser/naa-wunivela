@@ -342,55 +342,88 @@ async function handleOrderSubmission(e) {
   orderElements.submitBtn.textContent = "Processing...";
 
   try {
-    // Prepare order data
+    const customerName = document.getElementById("customerName").value.trim();
+    const customerEmail = document.getElementById("customerEmail").value.trim();
+    const customerPhone = document.getElementById("customerPhone").value.trim();
+    const customerLocation = document
+      .getElementById("customerLocation")
+      .value.trim();
+    const specialInstructions = document
+      .getElementById("specialInstructions")
+      .value.trim();
+
+    // Prepare order details text
+    let orderItemsText = orderItems
+      .map(
+        (item) => `- ${item.product.name} (x${item.quantity}) - GHc ${item.subtotal.toFixed(2)}`,
+      )
+      .join("\n");
+
     const orderData = {
-      customerName: document.getElementById("customerName").value.trim(),
-      customerEmail: document.getElementById("customerEmail").value.trim(),
-      customerPhone: document.getElementById("customerPhone").value.trim(),
-      customerLocation: document
-        .getElementById("customerLocation")
-        .value.trim(),
-      specialInstructions: document
-        .getElementById("specialInstructions")
-        .value.trim(),
-      items: orderItems,
-      total: orderTotal,
+      orderId: `NV-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}-${Math.random().toString(36).slice(2, 8).toUpperCase()}`,
+      customerName,
+      customerEmail,
+      customerPhone,
+      customerLocation,
+      specialInstructions: specialInstructions || "None",
+      items: orderItemsText,
+      totalAmount: `GHc ${orderTotal.toFixed(2)}`,
+      _subject: `New Order from ${customerName}`,
     };
 
-    // Send order to backend (serverless endpoint)
-    // API_BASE is set by hosting environment (Netlify, Vercel, or .env)
-    const apiBase = window.API_BASE || "/.netlify/functions";
-    const response = await fetch(`${apiBase}/order`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(orderData),
+    // 1. Submit to Formspree for record keeping
+    const formspreeUrl = "https://formspree.io/f/mnjjgnpz";
+    
+    // We'll try to submit to Formspree, but we'll continue to WhatsApp anyway
+    try {
+      await fetch(formspreeUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(orderData),
+      });
+    } catch (fErr) {
+      console.warn("Formspree submission failed, but proceeding to WhatsApp:", fErr);
+    }
+
+    // 2. Prepare WhatsApp message
+    const whatsappNumber = "233556559201"; // Format: Country code + number without +
+    const whatsappMessage = encodeURIComponent(
+      `*NEW ORDER - NAA-WUNI VELA*\n\n` +
+      `*Order ID:* ${orderData.orderId}\n` +
+      `*Name:* ${customerName}\n` +
+      `*Phone:* ${customerPhone}\n` +
+      `*Location:* ${customerLocation}\n\n` +
+      `*Items Ordered:*\n${orderItemsText}\n\n` +
+      `*Total Amount:* GHc ${orderTotal.toFixed(2)}\n\n` +
+      `*Instructions:* ${orderData.specialInstructions}`
+    );
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+    // Show success modal first
+    orderElements.orderId.textContent = orderData.orderId;
+    orderElements.successModal.style.display = "flex";
+
+    // Store the WhatsApp URL to open after modal close
+    window.pendingWhatsAppUrl = whatsappUrl;
+
+    // Reset form
+    orderElements.orderForm.reset();
+    orderItems = [];
+    updateOrderSummary();
+
+    // Reset quantities
+    ORDER_PRODUCTS.forEach((product) => {
+      const qtyInput = document.getElementById(`qty-${product.id}`);
+      if (qtyInput) qtyInput.value = "0";
     });
 
-    const result = await response.json();
-
-    if (result.success) {
-      // Show success modal
-      orderElements.orderId.textContent = result.orderId;
-      orderElements.successModal.style.display = "flex";
-
-      // Reset form
-      orderElements.orderForm.reset();
-      orderItems = [];
-      updateOrderSummary();
-
-      // Reset quantities
-      ORDER_PRODUCTS.forEach((product) => {
-        const qtyInput = document.getElementById(`qty-${product.id}`);
-        if (qtyInput) qtyInput.value = "0";
-      });
-    } else {
-      throw new Error(result.message || "Failed to place order");
-    }
   } catch (error) {
     console.error("Order submission error:", error);
-    alert("Failed to place order. Please try again or contact us directly.");
+    alert("There was an error processing your order. Please try again or contact us via WhatsApp.");
   } finally {
     // Re-enable submit button
     orderElements.submitBtn.disabled = false;
@@ -401,6 +434,13 @@ async function handleOrderSubmission(e) {
 // Close success modal
 function closeModal() {
   orderElements.successModal.style.display = "none";
+  
+  // Redirect to WhatsApp if URL exists
+  if (window.pendingWhatsAppUrl) {
+    window.open(window.pendingWhatsAppUrl, '_blank');
+    window.pendingWhatsAppUrl = null;
+  }
+  
   // Redirect to home page after a short delay
   setTimeout(() => {
     window.location.href = "index.html";
