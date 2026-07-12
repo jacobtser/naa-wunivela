@@ -342,7 +342,7 @@
                   </p>
                   <button
                     class="share-testimonial-btn"
-                    onclick="scrollToSection('contact')"
+                    onclick="shareStory()"
                   >
                     <i class="fas fa-comment"></i> Share Your Story
                   </button>
@@ -604,9 +604,10 @@
               method="POST"
             >
               <input type="hidden" name="_next" value="index.html?success=true" />
+              <input type="hidden" name="_subject" id="formSubject" value="" />
               <div class="form-header">
                 <h3>Send us a message</h3>
-                <p>Fill out the form below and we'll respond promptly</p>
+                <p id="formDescription">Fill out the form below and we'll respond promptly</p>
               </div>
 
               <div class="form-group">

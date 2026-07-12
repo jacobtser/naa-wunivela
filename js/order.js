@@ -134,6 +134,13 @@ function loadProducts() {
     const productCard = createProductCard(product, index);
     orderElements.productsContainer.appendChild(productCard);
   });
+
+  // Make cards visible (IntersectionObserver in main.js ran before these existed)
+  requestAnimationFrame(() => {
+    orderElements.productsContainer.querySelectorAll('.product-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('animate-visible'), i * 100);
+    });
+  });
 }
 
 // Create product card

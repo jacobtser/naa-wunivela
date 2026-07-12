@@ -704,6 +704,25 @@ function initializeVideoHandler() {
   });
 }
 
+// ========== SHARE STORY ==========
+function shareStory() {
+  var subject = document.getElementById("formSubject");
+  var message = document.getElementById("message");
+  var desc = document.getElementById("formDescription");
+  if (subject) subject.value = "My Story / Testimonial";
+  if (message && !message.value.trim()) {
+    message.value = "I'd love to share my experience with Naa-Wuni Vela...";
+  }
+  if (desc) desc.textContent = "Tell us your experience — we'd love to feature your story!";
+  scrollToSection("contact");
+  setTimeout(function () {
+    if (message) {
+      message.focus();
+      message.selectionStart = message.selectionEnd = message.value.length;
+    }
+  }, 500);
+}
+
 // ========== UTILITY FUNCTIONS ==========
 function scrollToSection(sectionId) {
   const section = document.getElementById(sectionId);
@@ -816,6 +835,7 @@ function debounce(func, wait) {
 }
 
 // ========== GLOBAL EXPORTS ==========
+window.shareStory = shareStory;
 window.scrollToSection = scrollToSection;
 window.handleProductClick = handleProductClick;
 window.nextTestimonial = nextTestimonial;
