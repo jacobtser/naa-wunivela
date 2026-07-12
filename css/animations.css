@@ -2,6 +2,77 @@
    ANIMATIONS & TRANSITIONS
    ========================================== */
 
+/* Gold Glow - For Counter Numbers */
+@keyframes goldGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(201, 168, 76, 0.3), 0 0 20px rgba(201, 168, 76, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.5), 0 0 40px rgba(201, 168, 76, 0.2), 0 0 60px rgba(201, 168, 76, 0.1);
+  }
+}
+
+/* Hero Overlay Gold Pulse */
+@keyframes goldPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Section Reveal - subtle slide up with fade */
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-reveal {
+  animation: sectionReveal 0.8s ease forwards;
+}
+
+/* Image Zoom on Scroll Reveal */
+@keyframes zoomIn {
+  from {
+    transform: scale(1.05);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.zoom-in {
+  animation: zoomIn 1s ease forwards;
+}
+
+/* Gold shimmer for decorative elements */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, 
+    var(--primary-color) 0%, 
+    var(--gold-light) 50%, 
+    var(--primary-color) 100%
+  );
+  background-size: 200% auto;
+  animation: goldShimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Fade In */
 .animate-fade-in {
   opacity: 0;
@@ -744,9 +815,27 @@
     }
 }
 
-.hero-text.animate-fade-in {
-    animation: heroTitleEntrance 0.8s ease-out forwards;
+/* Hero subtitle delayed entrance */
+.hero-subtitle {
+    animation: heroTitleEntrance 0.8s ease-out 0.2s forwards;
+    opacity: 0;
 }
+
+/* Hero buttons delayed entrance */
+.hero-buttons {
+    animation: heroTitleEntrance 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+/* Staggered card entrance for products grid */
+.products-grid .product-card {
+    animation: heroTitleEntrance 0.6s ease-out forwards;
+}
+
+.products-grid .product-card:nth-child(1) { animation-delay: 0.1s; }
+.products-grid .product-card:nth-child(2) { animation-delay: 0.2s; }
+.products-grid .product-card:nth-child(3) { animation-delay: 0.3s; }
+.products-grid .product-card:nth-child(4) { animation-delay: 0.4s; }
 
 /* Section title underline animation */
 @keyframes underlineExpand {

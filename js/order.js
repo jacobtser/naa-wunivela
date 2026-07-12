@@ -75,6 +75,40 @@ const orderElements = {
   orderId: document.getElementById("orderId"),
 };
 
+// Get URL parameter
+function getUrlParam(name) {
+  var params = new URLSearchParams(window.location.search);
+  return params.get(name);
+}
+
+// Auto-select a product from URL parameter
+function autoSelectProduct() {
+  var productId = getUrlParam("product");
+  if (!productId) return;
+
+  var product = ORDER_PRODUCTS.find(function (p) {
+    return p.id === productId;
+  });
+  if (!product) return;
+
+  var qtyInput = document.getElementById("qty-" + productId);
+  if (!qtyInput) return;
+
+  qtyInput.value = "1";
+  updateOrderItem(productId, 1);
+  updateOrderSummary();
+
+  // Scroll to the product card with animation
+  var card = qtyInput.closest(".product-card");
+  if (card) {
+    card.style.borderColor = "var(--primary-color)";
+    card.style.boxShadow = "0 0 0 2px rgba(201, 168, 76, 0.3), var(--shadow-md)";
+    setTimeout(function () {
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 300);
+  }
+}
+
 // Initialize order system
 function initOrderSystem() {
   console.log("Initializing order system...");
@@ -87,6 +121,7 @@ function initOrderSystem() {
   loadProducts();
   setupFormValidation();
   updateOrderSummary();
+  autoSelectProduct();
 
   console.log("Order system initialized");
 }

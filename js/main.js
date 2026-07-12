@@ -111,6 +111,7 @@ let testimonialInterval;
 let isScrolling = false;
 let heroSlideInterval;
 
+
 // DOM Elements
 const elements = {
   body: document.body,
@@ -121,6 +122,8 @@ const elements = {
   backToTop: document.getElementById("backToTop"),
   loadingSpinner: document.getElementById("loadingSpinner"),
   contactForm: document.getElementById("contactForm"),
+  scrollProgress: document.getElementById("scrollProgress"),
+
 };
 
 // ==========================================
@@ -132,16 +135,18 @@ function preloadHeroImages() {
   console.log("Preloading hero images...");
 
   const heroImages = [
-    "assets/images/1.png",
-    "assets/images/2.png",
-    "assets/images/3.png",
-    "assets/images/4.png",
-    "assets/images/11.png",
-    "assets/images/22.png",
-    "assets/images/33.png",
-    "assets/images/44.png",
-    "assets/images/55.png",
-    "assets/images/5.jpeg",
+    "assets/images/25.png",
+    "assets/images/40.png",
+    "assets/images/60.png",
+    "assets/images/AI shea.jpeg",
+    "assets/images/1.jpg",
+    "assets/images/6.jpg",
+    "assets/images/w.jpg",
+    "assets/images/pan.jpeg",
+    "assets/images/woman.jpeg",
+    "assets/images/water.jpg",
+    "assets/images/55.jpeg",
+    "assets/images/logo.jpeg",
   ];
 
   // Preload all images
@@ -271,6 +276,29 @@ function validateSupportersImages() {
   });
 }
 
+// ========== SCROLL PROGRESS ==========
+function initializeScrollProgress() {
+  updateScrollProgress();
+}
+
+function updateScrollProgress() {
+  const progressBar = elements.scrollProgress;
+  if (!progressBar) return;
+
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progressBar.style.width = progress + '%';
+}
+
+// ========== COUNTER GLOW ==========
+function triggerCounterGlow(counterElement) {
+  counterElement.classList.add('gold-glow');
+  setTimeout(() => {
+    counterElement.classList.remove('gold-glow');
+  }, 2000);
+}
+
 // ========== INITIALIZATION ==========
 
 // Initialize Application
@@ -302,6 +330,7 @@ function initApp() {
   initializeBackToTop();
   initializeCounters();
   initializeVideoHandler();
+  initializeScrollProgress();
 
   // Validate supporter images
   setTimeout(validateSupportersImages, 1000);
@@ -394,6 +423,7 @@ function initializeNavigation() {
 function initializeProducts() {
   const productsData = [
     {
+      id: "shea-butter-250g",
       name: "Pure Shea Butter",
       description:
         "100% natural, unrefined shea butter straight from Ghana. Perfect for skin and hair care.",
@@ -403,6 +433,7 @@ function initializeProducts() {
       badge: "Best Seller",
     },
     {
+      id: "purely whipped shea",
       name: "Whipped Raw Shea Package",
       description: "Purely whipped shea.",
       price: "GHc25.00",
@@ -411,6 +442,7 @@ function initializeProducts() {
       badge: "New",
     },
     {
+      id: "Whipped shea",
       name: "Whipped Raw Shea Package",
       description: "Purely whipped shea.",
       price: "GHc40.00",
@@ -419,6 +451,7 @@ function initializeProducts() {
       badge: "New",
     },
     {
+      id: "Whipped Shea",
       name: "Whipped Raw Shea Package",
       description: "Purely whipped shea.",
       price: "GHc60.00",
@@ -455,7 +488,11 @@ function createProductCard(product, index) {
       <div class="product-features">
         ${product.features.map((feature) => `<span class="feature-tag">${feature}</span>`).join("")}
       </div>
-
+      <div class="product-price">${product.price}</div>
+      <div class="product-footer">
+        <a href="order.html?product=${product.id}" class="product-button">
+          <i class="fas fa-shopping-cart"></i> Order Now
+        </a>
       </div>
     </div>
   `;
@@ -552,22 +589,6 @@ function initializeTabs() {
   const tabButtons = document.querySelectorAll(".tab-button");
   const tabContents = document.querySelectorAll(".tab-content");
 
-  // Set supporters tab as active by default
-  const supportersTab = document.getElementById("supporters-tab");
-  const supportersButton = document.querySelector(
-    '.tab-button[data-tab="supporters"]',
-  );
-
-  if (supportersTab && supportersButton) {
-    // Remove active from all
-    tabContents.forEach((tab) => tab.classList.remove("active"));
-    tabButtons.forEach((btn) => btn.classList.remove("active"));
-
-    // Add active to supporters
-    supportersTab.classList.add("active");
-    supportersButton.classList.add("active");
-  }
-
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const tabId = button.dataset.tab;
@@ -605,6 +626,8 @@ function initializeCounters() {
       if (current >= target) {
         current = target;
         counter.textContent = suffix ? `${target / 1000}${suffix}` : target;
+        // Trigger gold glow on completion
+        triggerCounterGlow(counter);
       } else {
         counter.textContent = suffix
           ? `${Math.floor(current / 1000)}${suffix}`
@@ -755,6 +778,7 @@ function addEventListeners() {
     isScrolling = true;
     checkScrollPosition();
     updateActiveNavLink();
+    updateScrollProgress();
 
     clearTimeout(window.scrollTimer);
     window.scrollTimer = setTimeout(() => {
