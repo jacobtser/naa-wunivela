@@ -520,7 +520,7 @@
     width: 44px;
     height: 44px;
     font-size: 1rem;
-    bottom: 1.25rem;
+    bottom: 5.5rem;
     right: 1.25rem;
   }
 }
@@ -874,7 +874,7 @@ svg {
 
 /* Back to top button safe zone */
 .back-to-top {
-  bottom: max(2rem, env(safe-area-inset-bottom, 1rem));
+  bottom: max(6.5rem, env(safe-area-inset-bottom, 1rem));
   right: max(2rem, env(safe-area-inset-right, 1rem));
 }
 
@@ -1041,5 +1041,15 @@ svg {
   .supporter-card:hover {
     transform: none !important;
     box-shadow: none !important;
+  }
+}
+
+/* ==========================================
+   CHATBOT MOBILE SAFE ZONE
+   ========================================== */
+
+@media (max-width: 768px) {
+  [class*="tawk-"] {
+    z-index: 9999 !important;
   }
 }

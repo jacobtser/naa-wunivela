@@ -2037,7 +2037,7 @@ a {
 /* Back to Top Button */
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
+  bottom: 6.5rem;
   right: 2rem;
   width: 50px;
   height: 50px;
@@ -2621,4 +2621,28 @@ button:focus-visible {
   .navbar {
     backdrop-filter: none;
   }
+}
+
+/* ==========================================
+   TAWK.TO CHATBOT FIXES
+   ========================================== */
+
+/* Fix: prevent chat bubble from overlapping mobile nav */
+@media (max-width: 768px) {
+  .navbar {
+    z-index: 999999;
+  }
+}
+
+/* Fix: prevent chat widget from colliding with footer/back-to-top on mobile */
+@media (max-width: 575px) {
+  iframe[src*="tawk.to"],
+  [class*="tawk-"] {
+    bottom: 70px !important;
+  }
+}
+
+/* Fix: back-to-top button safe zone */
+.back-to-top {
+  z-index: 99999;
 }
